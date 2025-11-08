@@ -28,7 +28,7 @@ A lot of inspirations
 
 See the wireframe image for layout: main MapLibre panel (flows + facilities), right control panel (filters, scenario toggles, metrics), bottom time slider, and a linked D3 chart. But as is two parts, I imagine a narrative where the users starts scrolling down and see 1 the simulations until it reaches the map with movement (like lucidy)
 See (print1.pdf) for a general initial idea I was drawing and this for a module specialized after the narrative:
-![Interactiveidea](./interactive-migration-mockup.png)
+![Interactiveidea](../interactive-migration-mockup.png)
 
 ## Data Sources
 

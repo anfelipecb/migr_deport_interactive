@@ -1,0 +1,22 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Large data files
+*.zip
+*.parquet
+*.xlsx
+
+# Cache files
+**/cleaned/location_cache.json
+
+# But allow visualization data
+!www/data/*.json
+*.DS_Store

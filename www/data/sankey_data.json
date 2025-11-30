@@ -1,0 +1,19 @@
+{
+  "links": [
+    {
+      "source": "Arrest",
+      "target": "Detention",
+      "value": 194773
+    },
+    {
+      "source": "Arrest",
+      "target": "Removal",
+      "value": 80421
+    },
+    {
+      "source": "Detention",
+      "target": "Removal",
+      "value": 349285
+    }
+  ]
+}

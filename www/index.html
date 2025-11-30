@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deportation Flows</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- MapLibre GL JS -->
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+    <!-- Scrollama -->
+    <script src="https://unpkg.com/scrollama"></script>
+    <!-- Turf.js -->
+    <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- D3 Sankey -->
+    <script src="https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+            <h1>Deportation Flows</h1>
+            <p class="subtitle">Visualizing the movement from US States to Countries of Origin</p>
+        </div>
+    </header>
+
+    <p class="intro">In recent years, deportations from the United States have increased significantly. 
+        This visualization explores the deportation pipeline, tracking individuals from their initial 
+        arrest through detention facilities to their final removal from the country. Each stage 
+        represents a critical point in a complex system that affects thousands of lives annually.</p>
+
+    <section id="timeline-section">
+        <div class="timeline-container">
+            <div class="timeline-header">
+                <h2>Timeline of Deportations</h2>
+                <p class="timeline-description">Monthly counts of arrests, detentions, and removals over time.</p>
+            </div>
+            <div id="timeline-scrolly">
+                <div id="timeline-viz"></div>
+                <article>
+                    <div class="step" data-step="1">
+                        <h3>Understanding the Patterns</h3>
+                        <p>The timeline reveals important trends in deportations. Notice how the three lines—arrests, detentions, and removals—fluctuate over time, showing the ebb and flow of enforcement activities.</p>
+                    </div>
+                    <div class="step" data-step="2">
+                        <h3>A New Administration</h3>
+                        <p>In January 2025, a new administration took office, marking a significant shift in immigration policy. The vertical line indicates this transition point, which may have influenced deportation patterns.</p>
+                    </div>
+                </article>
+                <div class="timeline-spacer"></div>
+                <div id="timeline-filter">
+                    <p>Select the country of citizenship you want to show.</p>
+                    <select id="country-select">
+                        <option value="all">All Countries</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sankey-section">
+        <div class="sankey-container">
+            <h2>The Deportation Pipeline</h2>
+            <p class="sankey-description">Explore how individuals move through the system: from arrest to detention to removal.</p>
+            <div id="sankey-container"></div>
+        </div>
+    </section>
+
+    <main>
+        <section id="scrolly">
+            <div id="map"></div>
+            <article>
+                <div class="step intro-step">
+                    <h2>The Journey Begins</h2>
+                    <p>Every year, thousands of individuals are deported from the United States. This visualization
+                        traces their journey from the state of arrest to their country of origin.</p>
+                </div>
+                <div class="step destination-step" data-destination-index="0">
+                    <h2 class="dest-title">Destination 1</h2>
+                    <p class="dest-summary">Loading...</p>
+                    <ul class="dest-origins"></ul>
+                </div>
+                <div class="step destination-step" data-destination-index="1">
+                    <h2 class="dest-title">Destination 2</h2>
+                    <p class="dest-summary">Loading...</p>
+                    <ul class="dest-origins"></ul>
+                </div>
+                <div class="step destination-step" data-destination-index="2">
+                    <h2 class="dest-title">Destination 3</h2>
+                    <p class="dest-summary">Loading...</p>
+                    <ul class="dest-origins"></ul>
+                </div>
+                <div class="step interactive-step">
+                    <h2>Explore Destinations Yourself</h2>
+                    <p>Use the destination overlay to hover, click, and zoom into any country to see how many removals head there. This final step unlocks the full map controls.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <script src="timeline.js"></script>
+    <script src="sankey.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

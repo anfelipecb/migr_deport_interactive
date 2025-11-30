@@ -1,0 +1,151 @@
+{
+  "data": [
+    {
+      "date": "2023-09",
+      "arrests": 10515,
+      "detentions": 47868,
+      "removals": 19706
+    },
+    {
+      "date": "2023-10",
+      "arrests": 10004,
+      "detentions": 48693,
+      "removals": 20092
+    },
+    {
+      "date": "2023-11",
+      "arrests": 8825,
+      "detentions": 40895,
+      "removals": 22444
+    },
+    {
+      "date": "2023-12",
+      "arrests": 9807,
+      "detentions": 45393,
+      "removals": 21083
+    },
+    {
+      "date": "2024-01",
+      "arrests": 8462,
+      "detentions": 43548,
+      "removals": 22457
+    },
+    {
+      "date": "2024-02",
+      "arrests": 9540,
+      "detentions": 48183,
+      "removals": 22758
+    },
+    {
+      "date": "2024-03",
+      "arrests": 9507,
+      "detentions": 44936,
+      "removals": 23785
+    },
+    {
+      "date": "2024-04",
+      "arrests": 10136,
+      "detentions": 49514,
+      "removals": 23453
+    },
+    {
+      "date": "2024-05",
+      "arrests": 10223,
+      "detentions": 56176,
+      "removals": 25739
+    },
+    {
+      "date": "2024-06",
+      "arrests": 8459,
+      "detentions": 49584,
+      "removals": 24785
+    },
+    {
+      "date": "2024-07",
+      "arrests": 9442,
+      "detentions": 50769,
+      "removals": 27017
+    },
+    {
+      "date": "2024-08",
+      "arrests": 9141,
+      "detentions": 52153,
+      "removals": 25642
+    },
+    {
+      "date": "2024-09",
+      "arrests": 8407,
+      "detentions": 45656,
+      "removals": 22959
+    },
+    {
+      "date": "2024-10",
+      "arrests": 9580,
+      "detentions": 11670,
+      "removals": 24966
+    },
+    {
+      "date": "2024-11",
+      "arrests": 8246,
+      "detentions": 5855,
+      "removals": 22123
+    },
+    {
+      "date": "2024-12",
+      "arrests": 8542,
+      "detentions": 3741,
+      "removals": 21626
+    },
+    {
+      "date": "2025-01",
+      "arrests": 12277,
+      "detentions": 2425,
+      "removals": 19733
+    },
+    {
+      "date": "2025-02",
+      "arrests": 17322,
+      "detentions": 2904,
+      "removals": 18997
+    },
+    {
+      "date": "2025-03",
+      "arrests": 18749,
+      "detentions": 2410,
+      "removals": 20681
+    },
+    {
+      "date": "2025-04",
+      "arrests": 17861,
+      "detentions": 2197,
+      "removals": 20612
+    },
+    {
+      "date": "2025-05",
+      "arrests": 22648,
+      "detentions": 1567,
+      "removals": 26563
+    },
+    {
+      "date": "2025-06",
+      "arrests": 30402,
+      "detentions": 1375,
+      "removals": 27970
+    },
+    {
+      "date": "2025-07",
+      "arrests": 23627,
+      "detentions": 895,
+      "removals": 23250
+    }
+  ],
+  "dateRange": {
+    "start": "2023-09",
+    "end": "2025-07"
+  },
+  "totals": {
+    "arrests": 291722,
+    "detentions": 658407,
+    "removals": 528441
+  }
+}

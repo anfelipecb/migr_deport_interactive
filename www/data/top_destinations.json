@@ -1,0 +1,106 @@
+{
+  "destinations": [
+    {
+      "destination": "Mexico",
+      "total": 131424,
+      "coordinates": {
+        "lat": 23.6585116,
+        "lon": -102.0077097
+      },
+      "camera": {
+        "center": {
+          "lat": 23.6585116,
+          "lon": -102.0077097
+        },
+        "zoom": 4.3,
+        "pitch": 35,
+        "bearing": 0
+      },
+      "top_origins": [
+        {
+          "name": "Texas",
+          "count": 40181,
+          "percent": 30.6
+        },
+        {
+          "name": "California",
+          "count": 12877,
+          "percent": 9.8
+        },
+        {
+          "name": "Arizona",
+          "count": 10283,
+          "percent": 7.8
+        }
+      ]
+    },
+    {
+      "destination": "Honduras",
+      "total": 44639,
+      "coordinates": {
+        "lat": 15.2572432,
+        "lon": -86.0755145
+      },
+      "camera": {
+        "center": {
+          "lat": 15.2572432,
+          "lon": -86.0755145
+        },
+        "zoom": 5.2,
+        "pitch": 35,
+        "bearing": 0
+      },
+      "top_origins": [
+        {
+          "name": "Texas",
+          "count": 15774,
+          "percent": 35.3
+        },
+        {
+          "name": "Florida",
+          "count": 4242,
+          "percent": 9.5
+        },
+        {
+          "name": "Louisiana",
+          "count": 2500,
+          "percent": 5.6
+        }
+      ]
+    },
+    {
+      "destination": "Guatemala",
+      "total": 43975,
+      "coordinates": {
+        "lat": 15.5855545,
+        "lon": -90.345759
+      },
+      "camera": {
+        "center": {
+          "lat": 15.5855545,
+          "lon": -90.345759
+        },
+        "zoom": 5.2,
+        "pitch": 35,
+        "bearing": 0
+      },
+      "top_origins": [
+        {
+          "name": "Texas",
+          "count": 7941,
+          "percent": 18.1
+        },
+        {
+          "name": "Florida",
+          "count": 7439,
+          "percent": 16.9
+        },
+        {
+          "name": "Tennessee",
+          "count": 2661,
+          "percent": 6.1
+        }
+      ]
+    }
+  ]
+}

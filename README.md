@@ -1,4 +1,4 @@
-# In and Out: a Scrolly telling about recent Migrations and Deportations in the U.S.
+# From Roots to Removal: Visualizing Migration and Deportations in the United States
 
 Author: Andrés Felipe Camacho
 
@@ -139,4 +139,4 @@ uvx livereload
 ```
 ### **Note**
 
-This project was developed with AI assistance for implementation guidance, code optimization in the orchestration pipeline, debugging, and technical explanations of key components including MapLibre GL canvas rendering, Sankey diagram visualization, JavaScript DOM manipulation, and HTML editing. 
+This project was developed with AI assistance for implementation guidance, code optimization in the orchestration pipeline, debugging, and conceptualization of key components, including MapLibre GL canvas rendering, Sankey diagram visualization, JavaScript DOM manipulation, and HTML editing. 

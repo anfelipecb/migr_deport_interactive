@@ -1,9 +1,15 @@
+"""
+Geocode locations in the unified removals dataset.
+Adds latitude and longitude coordinates for visualization.
+"""
+
 import polars as pl
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
 from pathlib import Path
 import json
 import time
+
 
 def get_unique_locations(df, columns):
     """
@@ -18,15 +24,18 @@ def get_unique_locations(df, columns):
             unique_locs.update(locs)
     return unique_locs
 
+
 def load_cache(cache_path):
     if cache_path.exists():
         with open(cache_path, 'r') as f:
             return json.load(f)
     return {}
 
+
 def save_cache(cache, cache_path):
     with open(cache_path, 'w') as f:
         json.dump(cache, f, indent=4)
+
 
 def clean_location_name(loc):
     """
@@ -46,8 +55,9 @@ def clean_location_name(loc):
     
     return loc
 
+
 def geocode_locations():
-    script_dir = Path(__file__).parent
+    script_dir = Path(__file__).parent.parent
     data_path = script_dir / "cleaned/unified_removals.parquet"
     cache_path = script_dir / "cleaned/location_cache.json"
     mapping_path = script_dir / "cleaned/location_mappings.parquet"
@@ -152,5 +162,7 @@ def geocode_locations():
     df_final.write_parquet(output_path)
     print("Done.")
 
+
 if __name__ == "__main__":
     geocode_locations()
+

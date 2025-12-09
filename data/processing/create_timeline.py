@@ -1,7 +1,13 @@
+"""
+Create timeline data showing monthly counts of arrests, detentions, and removals.
+Creates timeline_data.json and timeline_data_by_country.json for the timeline visualization.
+"""
+
 import polars as pl
 import json
 from pathlib import Path
 from datetime import datetime
+
 
 def load_data(file_path):
     """
@@ -21,6 +27,7 @@ def load_data(file_path):
         print(f"Error loading {file_path}: {e}")
         raise
 
+
 def extract_monthly_counts(
     df,
     date_col,
@@ -28,6 +35,7 @@ def extract_monthly_counts(
     event_type,
     start_date_filter=None,
     unique_ids_filter=None,
+    deduplicate_first=False,
 ):
     """
     Extract monthly counts from a dataset, deduplicating by Unique Identifier.
@@ -54,14 +62,25 @@ def extract_monthly_counts(
         df_subset = df_subset.filter(pl.col(identifier_col).is_in(unique_ids_filter))
         print(f"  Filtered to {len(df_subset)} records matching provided Unique Identifiers")
     
-    # Remove rows with null dates
-    df_subset = df_subset.filter(pl.col(date_col).is_not_null())
-    print(f"  Records with valid dates: {len(df_subset)}")
+    # Remove rows with null ids or dates
+    df_subset = df_subset.filter(
+        pl.col(identifier_col).is_not_null() & pl.col(date_col).is_not_null()
+    )
+    print(f"  Records with valid ids/dates: {len(df_subset)}")
     
     # Convert to datetime
     df_subset = df_subset.with_columns([
         pl.col(date_col).cast(pl.Datetime).alias("date_dt")
     ])
+
+    # Optional deduplication: keep first occurrence per identifier (first detention per person)
+    if deduplicate_first:
+        df_subset = (
+            df_subset
+            .sort([identifier_col, "date_dt"])
+            .unique(subset=[identifier_col], keep="first")
+        )
+        print(f"  After deduping first occurrence: {len(df_subset)} records")
     
     # Extract year-month as string "YYYY-MM"
     df_subset = df_subset.with_columns([
@@ -89,12 +108,13 @@ def extract_monthly_counts(
     
     return result
 
+
 def create_timeline_data():
     """
     Creates timeline data showing monthly counts of arrests, detentions, and removals.
     Generates both aggregated (all countries) and by-country data.
     """
-    script_dir = Path(__file__).parent
+    script_dir = Path(__file__).parent.parent
     base_path = script_dir / "raw/ice_release_11aug2025_with_removals"
     output_dir = script_dir.parent / "www/data"
     output_path_all = output_dir / "timeline_data.json"
@@ -287,5 +307,7 @@ def create_timeline_data():
     
     return output_data_all, output_data_by_country
 
+
 if __name__ == "__main__":
     create_timeline_data()
+

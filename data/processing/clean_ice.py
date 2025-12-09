@@ -1,9 +1,15 @@
+"""
+Clean and merge ICE data (Arrests, Removals, Detentions).
+Creates unified_removals.parquet in the cleaned/ directory.
+"""
+
 import polars as pl
 from pathlib import Path
 
+
 def load_data(file_path):
     """
-    Loads Excel data using Polars with fastexcel engine.
+    Loads Excel data using Polars with calamine engine.
     Skips initial rows to find the correct header.
     """
     print(f"Loading data from {file_path}...")
@@ -20,6 +26,7 @@ def load_data(file_path):
         print(f"Error loading {file_path}: {e}")
         raise
 
+
 def clean_and_merge():
     """
     Reads Arrests, Removals, and Detentions data.
@@ -28,7 +35,7 @@ def clean_and_merge():
     Saves the result to Parquet.
     """
     # Use the script's location to determine paths
-    script_dir = Path(__file__).parent
+    script_dir = Path(__file__).parent.parent
     base_path = script_dir / "raw/ice_release_11aug2025_with_removals"
     
     arrests_path = base_path / "2025-ICLI-00019_2024-ICFO-39357_ERO Admin Arrests_LESA-STU_FINAL Redacted_raw.xlsx"
@@ -99,5 +106,7 @@ def clean_and_merge():
     df_unified.write_parquet(output_path)
     print("Done.")
 
+
 if __name__ == "__main__":
     clean_and_merge()
+

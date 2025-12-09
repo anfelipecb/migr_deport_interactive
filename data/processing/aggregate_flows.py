@@ -1,13 +1,20 @@
+"""
+Aggregate removal flows by origin-destination pairs.
+Creates flow_data.json and top_destinations.json for the removal flows map.
+"""
+
 import polars as pl
 import json
 from pathlib import Path
 
+
 def aggregate_data():
-    script_dir = Path(__file__).parent
+    script_dir = Path(__file__).parent.parent
     data_path = script_dir / "cleaned/unified_removals_with_geo.parquet"
     # Output to www/data for the frontend
     output_dir = script_dir.parent / "www/data"
     output_path = output_dir / "flow_data.json"
+    top_dest_path = output_dir / "top_destinations.json"
     
     print(f"Loading data from {data_path}...")
     df = pl.read_parquet(data_path)
@@ -66,7 +73,28 @@ def aggregate_data():
     with open(output_path, 'w') as f:
         json.dump(flows, f, indent=2)
     
+    # Create top destinations summary
+    destination_totals = {}
+    for flow in flows:
+        dest_name = flow["destination"]["name"]
+        if dest_name not in destination_totals:
+            destination_totals[dest_name] = {
+                "name": dest_name,
+                "total": 0,
+                "lat": flow["destination"]["lat"],
+                "lon": flow["destination"]["lon"]
+            }
+        destination_totals[dest_name]["total"] += flow["count"]
+    
+    top_destinations = sorted(destination_totals.values(), key=lambda x: x["total"], reverse=True)[:10]
+    
+    print(f"Saving top {len(top_destinations)} destinations to {top_dest_path}...")
+    with open(top_dest_path, 'w') as f:
+        json.dump({"destinations": top_destinations}, f, indent=2)
+    
     print("Done.")
+
 
 if __name__ == "__main__":
     aggregate_data()
+

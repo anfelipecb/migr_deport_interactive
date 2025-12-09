@@ -1,0 +1,17 @@
+{
+  "name": "migr_deport_interactive",
+  "version": "1.0.0",
+  "description": "Author: Andrés Felipe Camacho",
+  "main": "index.js",
+  "scripts": {
+    "format": "biome format --write ./www",
+    "lint": "biome lint --write ./www",
+    "check": "biome check --write ./www"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@biomejs/biome": "2.3.8"
+  }
+}

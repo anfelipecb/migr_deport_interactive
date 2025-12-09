@@ -20,3 +20,7 @@ wheels/
 # But allow visualization data
 !www/data/*.json
 *.DS_Store
+
+# Node modules
+node_modules/
+package-lock.json

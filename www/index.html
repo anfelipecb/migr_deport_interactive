@@ -21,17 +21,57 @@
 
 <body>
 
+    <!-- Small header with black background -->
     <header>
         <div class="header-content">
-            <h1>Deportation Flows</h1>
-            <p class="subtitle">Visualizing the movement from US States to Countries of Origin</p>
+            <h1>In and Out: Migrations and deportations stories</h1>
         </div>
     </header>
 
-    <p class="intro">In recent years, deportations from the United States have increased significantly. 
-        This visualization explores the deportation pipeline, tracking individuals from their initial 
-        arrest through detention facilities to their final removal from the country. Each stage 
-        represents a critical point in a complex system that affects thousands of lives annually.</p>
+    <!-- Full-screen hero section with background image -->
+    <section id="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">In and Out</h1>
+            <p class="hero-subtitle">Understanding Migrations and Deportation in the United States</p>
+        </div>
+    </section>
+
+    <section id="migration-section">
+        <div class="migration-container">
+            <div id="migration-viz"></div>
+            <article>
+                <div class="step" data-year="1850">
+                    <h3 class="era-1850">The Beginning (1850)</h3>
+                    <p>In 1850, the United States was home to 2.2 million foreign-born residents (<span class="era-1850">9.7% of the population</span>), representing the early waves of immigration that would shape the nation's character and economy.</p>
+                </div>
+                <div class="step" data-year="1960">
+                    <h3 class="era-1960">Post-War Growth (1960)</h3>
+                    <p>By 1960, the immigrant population had grown to 9.7 million (<span class="era-1960">5.4% of the population</span>), reflecting post-World War II migration patterns and the beginning of increased global mobility.</p>
+                </div>
+                <div class="step" data-year="2010">
+                    <h3 class="era-2010">Modern Migration (2010)</h3>
+                    <p>The 21st century saw explosive growth—39.9 million foreign-born residents (<span class="era-2010">12.9% of the population</span>) called the U.S. home, making America one of the world's most diverse nations.</p>
+                </div>
+                <div class="step" data-year="2024">
+                    <h3 class="era-2024">Today (2024)</h3>
+                    <p>Today, 50.2 million immigrants (<span class="era-2024">14.8% of the population</span>) live in the United States. Each icon you see represents about 200,000 individuals contributing to American society, economy, and culture.</p>
+                </div>
+            </article>
+        </div>
+        <div class="migration-context">
+            <h3>Generations of Migrants</h3>
+            <p>According to the Migration Policy Institute (MPI) when adding together immigrants and their U.S.-born children (the first and second generation), the total comes to about 90.8 million people, or 27% of the civilian noninstitutionalized U.S. population in 2023. A classic Gallup survey finds the immigrant imprint goes even deeper: only 56% of Americans said they, their parents, and their grandparents were all born in the U.S., while 44% reported that either they themselves, a parent, or at least one grandparent had immigrated. </p>
+            <p>Historically, the largest inflows feeding these diasporas were overwhelmingly European – especially German, Irish and Italian – whereas today the single most prominent origin is Mexican, which makes a sharp contrast with how heavily recent enforcement and deportation policies have targeted Latin American migrants.</p>
+        </div>
+    </section>
+
+    <section id="sankey-section">
+        <div class="sankey-container">
+            <h2>The Deportation Pipeline</h2>
+            <p class="sankey-description">This diagram shows the flow of individuals through ICE's enforcement pipeline from 2023-2025. An <strong>arrest</strong> occurs when ICE apprehends someone. After arrest, individuals may be transferred to ICE <strong>detention</strong> facilities or released (shown as "No Detention"). Some individuals appear in detention without a corresponding ICE arrest in our data—these may represent transfers from Customs and Border Protection or other agencies (shown as "No ICE Arrest"). From detention, individuals either proceed to <strong>removal</strong> (deportation from the United States) or are released. This visualization tracks unique individuals through each stage of the enforcement process.</p>
+            <div id="sankey-container"></div>
+        </div>
+    </section>
 
     <section id="timeline-section">
         <div class="timeline-container">
@@ -41,6 +81,12 @@
             </div>
             <div id="timeline-scrolly">
                 <div id="timeline-viz"></div>
+                <div id="timeline-filter">
+                    <p>Select the country of citizenship you want to show.</p>
+                    <select id="country-select">
+                        <option value="all">All Countries</option>
+                    </select>
+                </div>
                 <article>
                     <div class="step" data-step="1">
                         <h3>Understanding the Patterns</h3>
@@ -52,21 +98,7 @@
                     </div>
                 </article>
                 <div class="timeline-spacer"></div>
-                <div id="timeline-filter">
-                    <p>Select the country of citizenship you want to show.</p>
-                    <select id="country-select">
-                        <option value="all">All Countries</option>
-                    </select>
-                </div>
             </div>
-        </div>
-    </section>
-
-    <section id="sankey-section">
-        <div class="sankey-container">
-            <h2>The Deportation Pipeline</h2>
-            <p class="sankey-description">Explore how individuals move through the system: from arrest to detention to removal.</p>
-            <div id="sankey-container"></div>
         </div>
     </section>
 
@@ -75,9 +107,8 @@
             <div id="map"></div>
             <article>
                 <div class="step intro-step">
-                    <h2>The Journey Begins</h2>
-                    <p>Every year, thousands of individuals are deported from the United States. This visualization
-                        traces their journey from the state of arrest to their country of origin.</p>
+                    <h2>The Journey of Removal</h2>
+                    <p>Between September 2023 and July 2025, <strong>527,346 individuals</strong> were removed from the United States. This visualization traces their journey from the state of arrest to their country of destination.</p>
                 </div>
                 <div class="step destination-step" data-destination-index="0">
                     <h2 class="dest-title">Destination 1</h2>
@@ -96,15 +127,150 @@
                 </div>
                 <div class="step interactive-step">
                     <h2>Explore Destinations Yourself</h2>
-                    <p>Use the destination overlay to hover, click, and zoom into any country to see how many removals head there. This final step unlocks the full map controls.</p>
+                    <p>The map now shows the entire world. <strong>Hover</strong> over any country to see removal statistics and filter migration flows. <strong>Click</strong> on a country to zoom in and explore in detail. All map controls are now unlocked for your exploration.</p>
                 </div>
             </article>
         </section>
     </main>
 
+    <!-- Detention Journey Section -->
+    <section id="detention-section">
+        <div class="detention-intro">
+            <h2>Paths Through Detention</h2>
+            <p class="detention-description">
+                Before being removed from the United States, detained individuals are often transferred between 
+                multiple detention facilities across the country. Some people experience dozens of transfers, 
+                spending months or years moving through the detention system. This visualization reveals the 
+                network of transfers and follows two individual stories through America's detention infrastructure.
+            </p>
+        </div>
+        <div id="detention-scrolly">
+            <div id="detention-map"></div>
+            <article>
+                <div class="step intro-step">
+                    <h2>A Network of Transfers</h2>
+                    <p>
+                        Among the nearly 700,000 detention records in our data, over 176,000 individuals 
+                        were detained in more than one facility. Across all transfers, people traveled 
+                        an average of <strong id="avg-distance">493 miles (793 km)</strong> between facilities.
+                    </p>
+                    <p class="particle-note">
+                        <strong>Each flowing particle represents approximately 50 transfer events</strong> between 
+                        two facilities. The busiest routes show the most particles moving between them.
+                    </p>
+                </div>
+                <div class="step chicago-step">
+                    <h2>Chicago</h2>
+                    <div class="location-stats" id="chicago-stats">
+                        <p><strong>Facilities in Chicago area:</strong> <span id="chicago-facility-count">Loading...</span></p>
+                        <p><strong>Total transfers from Chicago:</strong> <span id="chicago-transfers">Loading...</span></p>
+                        <p class="stat-detail"><strong>Top destination:</strong></p>
+                        <ul id="chicago-destinations" class="destination-list">
+                            <li>Loading...</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="step facility1-step">
+                    <h2 id="facility1-name">Busiest Transfer Facility</h2>
+                    <div class="location-stats" id="facility1-stats">
+                        <p><strong>Location:</strong> <span id="facility1-location">Loading...</span></p>
+                        <p><strong>Total transfers:</strong> <span id="facility1-transfers">Loading...</span></p>
+                        <p class="stat-detail"><strong>Top destinations from here:</strong></p>
+                        <ul id="facility1-destinations" class="destination-list">
+                            <li>Loading...</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="step facility2-step">
+                    <h2 id="facility2-name">Second Busiest Facility</h2>
+                    <div class="location-stats" id="facility2-stats">
+                        <p><strong>Location:</strong> <span id="facility2-location">Loading...</span></p>
+                        <p><strong>Total transfers:</strong> <span id="facility2-transfers">Loading...</span></p>
+                        <p class="stat-detail"><strong>Top destinations from here:</strong></p>
+                        <ul id="facility2-destinations" class="destination-list">
+                            <li>Loading...</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="step story1-step">
+                    <h2>Detention Story 1: 14 Facilities</h2>
+                    <div class="person-demographics">
+                        <p>Loading...</p>
+                    </div>
+                    <div class="person-journey">
+                        <p>Loading...</p>
+                    </div>
+                    <p class="detention-counter detention-counter-1">Starting journey...</p>
+                    <p class="highlight-note">Follow the <span style="color: #b90c0c;">red point</span> as it moves through each detention facility.</p>
+                </div>
+                <div class="step reflection-step">
+                    <h2>The Human Cost of Transfers</h2>
+                    <p>
+                        Thousands of people experience multiple transfers during 
+                        their detention, each move disrupting legal proceedings, family connections, and medical care.
+                    </p>
+                    <p>
+                        The human cost of these transfers, including disrupted attorney-client relationships, 
+                        separation from family, and psychological toll, cannot be captured in miles or statistics alone.
+                    </p>
+                </div>
+                <div class="step interactive-step">
+                    <h2>Explore the facilities data yourself</h2>
+                    <p>
+                        The blue markers show detention facilities across the United States. Each facility's size 
+                        represents the volume of transfers it handles.
+                    </p>
+                    <p class="interaction-instructions">
+                        <strong>Hover</strong> over any facility to see its transfer statistics.<br>
+                        <strong>Zoom and pan</strong> to explore different regions.<br>
+                        <strong>Watch</strong> the continuous flow of transfers in the background.
+                    </p>
+                    <p style="margin-top: 1.5rem;">
+                        <button class="data-sources-btn" onclick="showDataSourcesOverlay()">View Data Sources & Methodology</button>
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Data Sources and Methodology Overlay -->
+    <section id="data-sources-overlay">
+        <div class="overlay-backdrop"></div>
+        <div class="data-sources-card">
+            <h2>Data Sources & Methodology</h2>
+            
+            <div class="data-source-section">
+                <h3>Data Sources</h3>
+                <ul>
+                    <li><strong>Arrests, Detentions, and Removals:</strong> Data provided by the <a href="https://deportationdata.org/data/ice.html" target="_blank" rel="noopener noreferrer">Deportation Data Project</a>, which obtains ICE enforcement data through FOIA requests. This visualization uses data covering September 2023 to July 2025, including arrests, detention records, and removal flows.</li>
+                    <li><strong>Historical Immigration Population:</strong> Data from the <a href="https://www.migrationpolicy.org/programs/data-hub/charts/immigrant-population-over-time" target="_blank" rel="noopener noreferrer">Migration Policy Institute Data Hub</a>, showing the foreign-born population in the United States from 1850 to 2024.</li>
+                    <li><strong>Detention Facilities:</strong> Geographic coordinates and facility information from ICE facility database, matched to detention records by facility code provided by the Vera Institute of Justice.</li>
+                </ul>
+            </div>
+
+            <div class="methodology-section">
+                <h3>Visualization Methodology</h3>
+                <ul>
+                    <li><strong>Particle Representation:</strong> Each particle in the removal flows represents approximately <strong>50 individuals</strong> transferred between locations</li>
+                    <li><strong>Detention Transfers:</strong> Each background particle represents approximately <strong>50 transfer events</strong> between detention facilities</li>
+                    <li><strong>Data Aggregation:</strong> Flows are aggregated by facility pairs and origin-destination pairs to improve performance and clarity</li>
+                    <li><strong>Distance Calculations:</strong> All distances calculated using the Haversine formula for great circle distances</li>
+                    <li><strong>Filtering:</strong> Only individuals with 2+ detention records are included in the detention journey analysis (176,947 individuals)</li>
+                    <li><strong>Note:</strong> The Migration Policy Institute data represents estimates of the foreign-born population based on U.S. Census and American Community Survey data</li>
+                </ul>
+            </div>
+
+
+            <button class="close-overlay-btn" onclick="window.closeDataSourcesOverlay()">Close</button>
+        </div>
+    </section>
+
     <script src="timeline.js"></script>
     <script src="sankey.js"></script>
+    <script src="migration.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
     <script src="main.js"></script>
+    <script src="detention_journey.js"></script>
 </body>
 
 </html>

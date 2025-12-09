@@ -1,0 +1,567 @@
+{
+  "highlights": [
+    {
+      "unique_id": "78c35cb0344432b9e470e7b08d80d66991c8f001",
+      "path": [
+        {
+          "facility_code": "CCAFLAZ",
+          "facility_name": "CCA, Florence Correctional Center",
+          "lat": 33.0438338,
+          "lon": -111.371793,
+          "city": "Florence",
+          "state": "AZ",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "JENATLA",
+          "facility_name": "Alexandria Staging Facility",
+          "lat": 31.31723,
+          "lon": -92.5364,
+          "city": "Alexandria",
+          "state": "LA",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "STWRTGA",
+          "facility_name": "Stewart Detention Center",
+          "lat": 32.036676,
+          "lon": -84.771746,
+          "city": "Lumpkin",
+          "state": "GA",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "STWRTGA",
+          "facility_name": "Stewart Detention Center",
+          "lat": 32.036676,
+          "lon": -84.771746,
+          "city": "Lumpkin",
+          "state": "GA",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "ALAMCNC",
+          "facility_name": "Alamance Co. Det. Facility",
+          "lat": 36.0685551,
+          "lon": -79.402463,
+          "city": "Graham",
+          "state": "NC",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "CCAFLAZ",
+          "facility_name": "CCA, Florence Correctional Center",
+          "lat": 33.0438338,
+          "lon": -111.371793,
+          "city": "Florence",
+          "state": "AZ",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "ADAMSMS",
+          "facility_name": "Adams County Det Center",
+          "lat": 31.56917545,
+          "lon": -91.23046875,
+          "city": "Natchez",
+          "state": "MS",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "RCMHOLD",
+          "facility_name": "Richmond Sub-Office Hold",
+          "lat": 37.542324,
+          "lon": -77.433933,
+          "city": "Richmond",
+          "state": "VA",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "EPSSFTX",
+          "facility_name": "El Paso Soft Sided Facility",
+          "lat": 31.8836416,
+          "lon": -106.4409459,
+          "city": "El Paso",
+          "state": "TX",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "JENADLA",
+          "facility_name": "Lasalle ICE Processing Center",
+          "lat": 31.70727408,
+          "lon": -92.15105963,
+          "city": "Jena",
+          "state": "LA",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "STWRTGA",
+          "facility_name": "Stewart Detention Center",
+          "lat": 32.036676,
+          "lon": -84.771746,
+          "city": "Lumpkin",
+          "state": "GA",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "FSF",
+          "facility_name": "Florence Staging Facility",
+          "lat": 33.0649605,
+          "lon": -111.3785048,
+          "city": "Florence",
+          "state": "AZ",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "FLO",
+          "facility_name": "Florence SPC",
+          "lat": 33.0649605,
+          "lon": -111.3785048,
+          "city": "Florence",
+          "state": "AZ",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "LAWINCI",
+          "facility_name": "Winn Corr Institute",
+          "lat": 31.84956533,
+          "lon": -92.80151367,
+          "city": "Winnfield",
+          "state": "LA",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "EPSSFTX",
+          "facility_name": "El Paso Soft Sided Facility",
+          "lat": 31.8836416,
+          "lon": -106.4409459,
+          "city": "El Paso",
+          "state": "TX",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "JENATLA",
+          "facility_name": "Alexandria Staging Facility",
+          "lat": 31.31723,
+          "lon": -92.5364,
+          "city": "Alexandria",
+          "state": "LA",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "FSF",
+          "facility_name": "Florence Staging Facility",
+          "lat": 33.0649605,
+          "lon": -111.3785048,
+          "city": "Florence",
+          "state": "AZ",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "FRMVLVA",
+          "facility_name": "ICA - Farmville",
+          "lat": 37.319501,
+          "lon": -78.438276,
+          "city": "Farmville",
+          "state": "VA",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "FLO",
+          "facility_name": "Florence SPC",
+          "lat": 33.0649605,
+          "lon": -111.3785048,
+          "city": "Florence",
+          "state": "AZ",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "FSF",
+          "facility_name": "Florence Staging Facility",
+          "lat": 33.0649605,
+          "lon": -111.3785048,
+          "city": "Florence",
+          "state": "AZ",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "FSF",
+          "facility_name": "Florence Staging Facility",
+          "lat": 33.0649605,
+          "lon": -111.3785048,
+          "city": "Florence",
+          "state": "AZ",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "ATLHOLD",
+          "facility_name": "Atlanta Dist. Hold Rm",
+          "lat": 33.7531639,
+          "lon": -84.3931588,
+          "city": "Atlanta",
+          "state": "GA",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "FLO",
+          "facility_name": "Florence SPC",
+          "lat": 33.0649605,
+          "lon": -111.3785048,
+          "city": "Florence",
+          "state": "AZ",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "PRLDCTX",
+          "facility_name": "Prairieland Detention Center",
+          "lat": 32.42078539,
+          "lon": -97.19690234,
+          "city": "Alvarado",
+          "state": "TX",
+          "date": "2022-12-21T18:54:00"
+        },
+        {
+          "facility_code": "STWRTGA",
+          "facility_name": "Stewart Detention Center",
+          "lat": 32.036676,
+          "lon": -84.771746,
+          "city": "Lumpkin",
+          "state": "GA",
+          "date": "2022-12-21T18:54:00"
+        }
+      ],
+      "transfer_count": 25,
+      "unique_facilities": 14,
+      "story_data": {
+        "gender": "Male",
+        "birth_year": 1987,
+        "citizenship": "GUINEA",
+        "first_facility": "CCA, Florence Correctional Center",
+        "first_state": "AZ",
+        "last_facility": "Stewart Detention Center",
+        "last_state": "GA",
+        "first_date": "2022-12-21T18:54:00",
+        "last_date": "2022-12-21T18:54:00",
+        "total_distance_km": 36349.02367489922,
+        "total_distance_miles": 22586.229189895803
+      }
+    },
+    {
+      "unique_id": "96b71339643d1ca9d6a04147732138e4b0e43dd7",
+      "path": [
+        {
+          "facility_code": "KROHOLD",
+          "facility_name": "Krome Hold Room",
+          "lat": 25.7581461,
+          "lon": -80.3509388,
+          "city": "Miami",
+          "state": "FL",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "CCASDCA",
+          "facility_name": "Otay Mesa Detention Center",
+          "lat": 32.57652475,
+          "lon": -116.9154777,
+          "city": "San Diego",
+          "state": "CA",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "CCASDCA",
+          "facility_name": "Otay Mesa Detention Center",
+          "lat": 32.57652475,
+          "lon": -116.9154777,
+          "city": "San Diego",
+          "state": "CA",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "JKPCCLA",
+          "facility_name": "Jackson Parish Correctional Center",
+          "lat": 32.22209584,
+          "lon": -92.72460938,
+          "city": "Jonesboro",
+          "state": "LA",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "LRKBHFL",
+          "facility_name": "Larkin Behavioral Health Svcs",
+          "lat": 26.0211773,
+          "lon": -80.1806619,
+          "city": "Hollywood",
+          "state": "FL",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "MSF",
+          "facility_name": "Miami Staging Facility",
+          "lat": 25.7784607,
+          "lon": -80.1931315,
+          "city": "Miami",
+          "state": "FL",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "KROHOLD",
+          "facility_name": "Krome Hold Room",
+          "lat": 25.7581461,
+          "lon": -80.3509388,
+          "city": "Miami",
+          "state": "FL",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "PVLYHCA",
+          "facility_name": "Paradise Valley Hospital",
+          "lat": 32.6853667,
+          "lon": -117.0820744,
+          "city": "National City",
+          "state": "CA",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "SNDHOLD",
+          "facility_name": "SND District Staging",
+          "lat": 32.717307,
+          "lon": -117.165183,
+          "city": "San Diego",
+          "state": "CA",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "PVLYHCA",
+          "facility_name": "Paradise Valley Hospital",
+          "lat": 32.6853667,
+          "lon": -117.0820744,
+          "city": "National City",
+          "state": "CA",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "IRADFCA",
+          "facility_name": "Imperial Regional Adult Det Fac",
+          "lat": 32.690811,
+          "lon": -115.397861,
+          "city": "Calexico",
+          "state": "CA",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "MSF",
+          "facility_name": "Miami Staging Facility",
+          "lat": 25.7784607,
+          "lon": -80.1931315,
+          "city": "Miami",
+          "state": "FL",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "CCASDCA",
+          "facility_name": "Otay Mesa Detention Center",
+          "lat": 32.57652475,
+          "lon": -116.9154777,
+          "city": "San Diego",
+          "state": "CA",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "PVLYHCA",
+          "facility_name": "Paradise Valley Hospital",
+          "lat": 32.6853667,
+          "lon": -117.0820744,
+          "city": "National City",
+          "state": "CA",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "CCASDCA",
+          "facility_name": "Otay Mesa Detention Center",
+          "lat": 32.57652475,
+          "lon": -116.9154777,
+          "city": "San Diego",
+          "state": "CA",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "LRKBHFL",
+          "facility_name": "Larkin Behavioral Health Svcs",
+          "lat": 26.0211773,
+          "lon": -80.1806619,
+          "city": "Hollywood",
+          "state": "FL",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "MSF",
+          "facility_name": "Miami Staging Facility",
+          "lat": 25.7784607,
+          "lon": -80.1931315,
+          "city": "Miami",
+          "state": "FL",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "CCASDCA",
+          "facility_name": "Otay Mesa Detention Center",
+          "lat": 32.57652475,
+          "lon": -116.9154777,
+          "city": "San Diego",
+          "state": "CA",
+          "date": "2023-01-18T07:19:00"
+        },
+        {
+          "facility_code": "LRKBHFL",
+          "facility_name": "Larkin Behavioral Health Svcs",
+          "lat": 26.0211773,
+          "lon": -80.1806619,
+          "city": "Hollywood",
+          "state": "FL",
+          "date": "2024-08-09T15:50:00"
+        },
+        {
+          "facility_code": "LRKNHFL",
+          "facility_name": "Larkin Hospital",
+          "lat": 25.7062706,
+          "lon": -80.29266702,
+          "city": "South Miami",
+          "state": "FL",
+          "date": "2024-08-09T15:50:00"
+        },
+        {
+          "facility_code": "JENADLA",
+          "facility_name": "Lasalle ICE Processing Center",
+          "lat": 31.70727408,
+          "lon": -92.15105963,
+          "city": "Jena",
+          "state": "LA",
+          "date": "2024-08-09T15:50:00"
+        },
+        {
+          "facility_code": "KROHOLD",
+          "facility_name": "Krome Hold Room",
+          "lat": 25.7581461,
+          "lon": -80.3509388,
+          "city": "Miami",
+          "state": "FL",
+          "date": "2024-08-09T15:50:00"
+        },
+        {
+          "facility_code": "LRKBHFL",
+          "facility_name": "Larkin Behavioral Health Svcs",
+          "lat": 26.0211773,
+          "lon": -80.1806619,
+          "city": "Hollywood",
+          "state": "FL",
+          "date": "2024-08-09T15:50:00"
+        },
+        {
+          "facility_code": "KRO",
+          "facility_name": "Krome North SPC",
+          "lat": 25.76031975,
+          "lon": -80.49682617,
+          "city": "Miami",
+          "state": "FL",
+          "date": "2024-08-09T15:50:00"
+        },
+        {
+          "facility_code": "KROHOLD",
+          "facility_name": "Krome Hold Room",
+          "lat": 25.7581461,
+          "lon": -80.3509388,
+          "city": "Miami",
+          "state": "FL",
+          "date": "2024-08-09T15:50:00"
+        },
+        {
+          "facility_code": "KRO",
+          "facility_name": "Krome North SPC",
+          "lat": 25.76031975,
+          "lon": -80.49682617,
+          "city": "Miami",
+          "state": "FL",
+          "date": "2024-08-09T15:50:00"
+        },
+        {
+          "facility_code": "LRKNHFL",
+          "facility_name": "Larkin Hospital",
+          "lat": 25.7062706,
+          "lon": -80.29266702,
+          "city": "South Miami",
+          "state": "FL",
+          "date": "2024-08-09T15:50:00"
+        },
+        {
+          "facility_code": "LRKNHFL",
+          "facility_name": "Larkin Hospital",
+          "lat": 25.7062706,
+          "lon": -80.29266702,
+          "city": "South Miami",
+          "state": "FL",
+          "date": "2024-08-09T15:50:00"
+        },
+        {
+          "facility_code": "LRKBHFL",
+          "facility_name": "Larkin Behavioral Health Svcs",
+          "lat": 26.0211773,
+          "lon": -80.1806619,
+          "city": "Hollywood",
+          "state": "FL",
+          "date": "2024-08-09T15:50:00"
+        },
+        {
+          "facility_code": "KRO",
+          "facility_name": "Krome North SPC",
+          "lat": 25.76031975,
+          "lon": -80.49682617,
+          "city": "Miami",
+          "state": "FL",
+          "date": "2024-08-09T15:50:00"
+        },
+        {
+          "facility_code": "KRHUBFL",
+          "facility_name": "Krome/Miami Hub",
+          "lat": 25.75434,
+          "lon": -80.48913,
+          "city": "Miami",
+          "state": "FL",
+          "date": "2024-08-09T15:50:00"
+        },
+        {
+          "facility_code": "JENATLA",
+          "facility_name": "Alexandria Staging Facility",
+          "lat": 31.31723,
+          "lon": -92.5364,
+          "city": "Alexandria",
+          "state": "LA",
+          "date": "2024-08-09T15:50:00"
+        },
+        {
+          "facility_code": "CCASDCA",
+          "facility_name": "Otay Mesa Detention Center",
+          "lat": 32.57652475,
+          "lon": -116.9154777,
+          "city": "San Diego",
+          "state": "CA",
+          "date": "2024-08-09T15:50:00"
+        }
+      ],
+      "transfer_count": 33,
+      "unique_facilities": 13,
+      "story_data": {
+        "gender": "Male",
+        "birth_year": 2000,
+        "citizenship": "IRAQ",
+        "first_facility": "Krome Hold Room",
+        "first_state": "FL",
+        "last_facility": "Otay Mesa Detention Center",
+        "last_state": "CA",
+        "first_date": "2023-01-18T07:19:00",
+        "last_date": "2024-08-09T15:50:00",
+        "total_distance_km": 35692.88989127152,
+        "total_distance_miles": 22178.526684629276
+      }
+    }
+  ],
+  "max_transfers": 14
+}

@@ -6,10 +6,14 @@ let animationActive = false;
 let animationFrameId;
 let canvas;
 let ctx;
+let worldCountriesData = null;
+let countryTooltip = null;
+let hoveredCountryName = null;
+let selectedCountryName = null; // Track clicked/selected country for particle filtering
 
 // Configuration
-const SPEED_FACTOR = 0.0004; // 20x faster - trip takes ~5 seconds
-const PARTICLE_RADIUS = 2; // Reduced size for many particles
+const SPEED_FACTOR = 0.0009; // 20x faster - trip takes ~5 seconds
+const PARTICLE_RADIUS = 1.8; // Reduced size for many particles
 const PARTICLE_COLOR = '#FF000080';
 const DEFAULT_CAMERA = {
     center: [-85, 20],
@@ -17,12 +21,48 @@ const DEFAULT_CAMERA = {
     pitch: 0,
     bearing: 0
 };
+
+const WORLD_CAMERA = {
+    center: [0, 20],
+    zoom: 1.8,
+    pitch: 0,
+    bearing: 0
+};
 const DESTINATION_SOURCE_ID = 'destination-totals';
 const DESTINATION_CIRCLE_LAYER_ID = 'destination-circles';
 const DESTINATION_LABEL_LAYER_ID = 'destination-labels';
+const COUNTRIES_SOURCE_ID = 'world-countries';
+const COUNTRIES_LAYER_ID = 'country-fills';
+const COUNTRIES_OUTLINE_LAYER_ID = 'country-outlines';
+
+// Mapping from Natural Earth country names to our destination names
+const COUNTRY_NAME_MAPPING = {
+    'Mexico': 'Mexico',
+    'Honduras': 'Honduras',
+    'Guatemala': 'Guatemala',
+    'El Salvador': 'El Salvador',
+    'Nicaragua': 'Nicaragua',
+    'Haiti': 'Haiti',
+    'Dominican Republic': 'Dominican Republic',
+    'Jamaica': 'Jamaica',
+    'Colombia': 'Colombia',
+    'Ecuador': 'Ecuador',
+    'Peru': 'Peru',
+    'Brazil': 'Brazil',
+    'Venezuela': 'Venezuela',
+    'Cuba': 'Cuba',
+    'India': 'India',
+    'China': 'China',
+    'Philippines': 'Philippines',
+    'Vietnam': 'Vietnam',
+    // Add more as needed
+};
 
 let topDestinations = [];
+let allFlows = []; // Store all flows for country aggregation
+let countryRemovalData = {}; // Cache of aggregated removal data by country
 let overlayActive = false;
+let countriesActive = false;
 let destinationTooltip = null;
 
 async function loadData() {
@@ -94,7 +134,11 @@ function createParticles(flows) {
                 speed: speed,
                 startOffset: startOffset,
                 flowIndex: flowIndex,
-                particleIndex: i
+                particleIndex: i,
+                destinationName: flow.destination.name,
+                filtered: false,
+                opacity: 1.0,
+                color: 'red' // Default color: red for matching, gray for non-matching
             });
         }
     });
@@ -162,10 +206,18 @@ function drawParticles() {
                 // Convert geographic coordinates to pixel coordinates
                 const pixel = map.project(coords);
 
-                // Draw particle as circle
+                // Draw particle as circle with dynamic color and opacity
                 ctx.beginPath();
                 ctx.arc(pixel.x, pixel.y, PARTICLE_RADIUS, 0, Math.PI * 2);
-                ctx.fillStyle = PARTICLE_COLOR;
+                const baseOpacity = 0.5; // Base opacity
+                const finalOpacity = baseOpacity * (p.opacity || 1.0);
+                
+                // Use particle color: red for matching destination, gray for non-matching
+                if (p.color === 'gray') {
+                    ctx.fillStyle = `rgba(128, 128, 128, ${finalOpacity})`; // Gray
+                } else {
+                    ctx.fillStyle = `rgba(255, 0, 0, ${finalOpacity})`; // Red
+                }
                 ctx.fill();
             } catch (error) {
                 // Skip particles that cause errors (e.g., invalid coordinates)
@@ -235,6 +287,17 @@ function flyToDefault() {
         zoom: DEFAULT_CAMERA.zoom,
         pitch: DEFAULT_CAMERA.pitch,
         bearing: DEFAULT_CAMERA.bearing,
+        speed: 0.6
+    });
+}
+
+function flyToWorld() {
+    if (!map) return;
+    map.flyTo({
+        center: WORLD_CAMERA.center,
+        zoom: WORLD_CAMERA.zoom,
+        pitch: WORLD_CAMERA.pitch,
+        bearing: WORLD_CAMERA.bearing,
         speed: 0.6
     });
 }
@@ -376,6 +439,473 @@ function setDestinationOverlayVisible(visible) {
     }
 }
 
+async function loadWorldCountries() {
+    try {
+        // Try using a GeoJSON source that handles dateline crossings better
+        // Using Natural Earth data converted to GeoJSON
+        const response = await fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json');
+        let geojson = await response.json();
+        
+        // If that source doesn't work, fall back to TopoJSON with fixes
+        if (!geojson || !geojson.features || geojson.features.length === 0) {
+            console.log('Primary source failed, trying TopoJSON fallback...');
+            const topoResponse = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+            const topology = await topoResponse.json();
+            geojson = topojson.feature(topology, topology.objects.countries);
+        }
+        
+        // Post-process to fix any geometry issues, especially for Russia
+        if (geojson && geojson.features) {
+            geojson.features.forEach(feature => {
+                if (!feature.geometry || !feature.geometry.coordinates) return;
+                
+                // Check if this is Russia
+                const isRussia = feature.properties?.name?.toLowerCase().includes('russia') || 
+                               feature.properties?.NAME?.toLowerCase().includes('russia');
+                
+                if (isRussia) {
+                    console.log('Processing Russia geometry:', feature.geometry.type);
+                    
+                    // For Russia, ensure coordinates are properly structured
+                    // MapLibre should handle MultiPolygon correctly, but we can validate
+                    if (feature.geometry.type === 'MultiPolygon') {
+                        // Ensure all polygons have valid coordinates
+                        feature.geometry.coordinates = feature.geometry.coordinates.filter(polygon => 
+                            polygon && polygon.length > 0
+                        );
+                    }
+                }
+            });
+        }
+        
+        console.log('Loaded world countries:', geojson.features?.length || 0, 'countries');
+        const russiaFeature = geojson.features?.find(f => 
+            f.properties?.name?.toLowerCase().includes('russia') ||
+            f.properties?.NAME?.toLowerCase().includes('russia')
+        );
+        if (russiaFeature) {
+            console.log('Russia found:', russiaFeature.properties?.name || russiaFeature.properties?.NAME, 
+                       'Type:', russiaFeature.geometry?.type);
+        }
+        
+        return geojson;
+    } catch (error) {
+        console.error('Error loading world countries:', error);
+        return null;
+    }
+}
+
+function aggregateFlowsByDestination(flows) {
+    const aggregated = {};
+    
+    flows.forEach(flow => {
+        if (!flow.destination || !flow.destination.name) return;
+        
+        const destName = flow.destination.name;
+        
+        if (!aggregated[destName]) {
+            aggregated[destName] = {
+                destination: destName,
+                total: 0,
+                origins: {}
+            };
+        }
+        
+        aggregated[destName].total += flow.count || 0;
+        
+        // Track origin states
+        if (flow.origin && flow.origin.name) {
+            const originName = flow.origin.name;
+            if (!aggregated[destName].origins[originName]) {
+                aggregated[destName].origins[originName] = 0;
+            }
+            aggregated[destName].origins[originName] += flow.count || 0;
+        }
+    });
+    
+    // Convert origins to sorted array
+    Object.keys(aggregated).forEach(dest => {
+        const origins = aggregated[dest].origins;
+        aggregated[dest].top_origins = Object.keys(origins)
+            .map(name => ({
+                name: name,
+                count: origins[name],
+                percent: ((origins[name] / aggregated[dest].total) * 100).toFixed(1)
+            }))
+            .sort((a, b) => b.count - a.count)
+            .slice(0, 5); // Top 5
+    });
+    
+    return aggregated;
+}
+
+function normalizeCountryName(name) {
+    // Remove common prefixes/suffixes and normalize
+    return name
+        .toLowerCase()
+        .replace(/^the\s+/, '') // Remove "The"
+        .replace(/\s+of\s+america$/, '') // Remove "of America"
+        .replace(/\s+and\s+/g, ' & ') // Normalize "and"
+        .trim();
+}
+
+function getDestinationDataForCountry(countryName) {
+    // First try exact match
+    if (countryRemovalData[countryName]) {
+        return countryRemovalData[countryName];
+    }
+    
+    // Try mapped name
+    const mappedName = COUNTRY_NAME_MAPPING[countryName];
+    if (mappedName && countryRemovalData[mappedName]) {
+        return countryRemovalData[mappedName];
+    }
+    
+    // Try case-insensitive match
+    const lowerCountryName = countryName.toLowerCase();
+    for (const destName in countryRemovalData) {
+        if (destName.toLowerCase() === lowerCountryName) {
+            return countryRemovalData[destName];
+        }
+    }
+    
+    // Try normalized match (handles variations)
+    const normalizedCountryName = normalizeCountryName(countryName);
+    for (const destName in countryRemovalData) {
+        const normalizedDestName = normalizeCountryName(destName);
+        if (normalizedDestName === normalizedCountryName) {
+            return countryRemovalData[destName];
+        }
+    }
+    
+    // Try reverse mapping (find Natural Earth name that maps to our destination)
+    for (const [neName, ourName] of Object.entries(COUNTRY_NAME_MAPPING)) {
+        if (neName === countryName && countryRemovalData[ourName]) {
+            return countryRemovalData[ourName];
+        }
+    }
+    
+    // Try partial match (e.g., "United States" matches "United States of America")
+    for (const destName in countryRemovalData) {
+        const normalizedDest = normalizeCountryName(destName);
+        const normalizedCountry = normalizeCountryName(countryName);
+        if (normalizedDest.includes(normalizedCountry) || normalizedCountry.includes(normalizedDest)) {
+            return countryRemovalData[destName];
+        }
+    }
+    
+    // Last resort: try matching first word (e.g., "Dominican" matches "Dominican Republic")
+    // Only if the first word is substantial (at least 5 chars)
+    // Exclude "united" as it's too ambiguous (matches both United States and United Kingdom)
+    const firstWord = countryName.split(/\s+/)[0].toLowerCase();
+    if (firstWord.length >= 5 && firstWord !== 'united') {
+        for (const destName in countryRemovalData) {
+            if (destName.toLowerCase().startsWith(firstWord)) {
+                return countryRemovalData[destName];
+            }
+        }
+    }
+    
+    // Special handling for "United" countries - require more specific matching
+    if (firstWord === 'united') {
+        const normalizedCountry = normalizeCountryName(countryName);
+        // Only match if the normalized names are very similar (not just sharing "united")
+        for (const destName in countryRemovalData) {
+            const normalizedDest = normalizeCountryName(destName);
+            // Require at least the second word to match as well
+            const countryWords = normalizedCountry.split(/\s+/);
+            const destWords = normalizedDest.split(/\s+/);
+            if (countryWords.length > 1 && destWords.length > 1) {
+                // Check if second words match (e.g., "states" matches "states", "kingdom" matches "kingdom")
+                if (countryWords[1] === destWords[1] && countryWords[1].length >= 4) {
+                    return countryRemovalData[destName];
+                }
+            }
+        }
+    }
+    
+    return null;
+}
+
+function addCountryLayers(geojson) {
+    if (!map || !geojson) return;
+    
+    // Add source with promoteId to use 'name' property as feature ID for feature-state
+    map.addSource(COUNTRIES_SOURCE_ID, {
+        type: 'geojson',
+        data: geojson,
+        promoteId: 'name'
+    });
+    
+    // Add fill layer for countries
+    // Try to add before circles layer, but if it doesn't exist, add to end
+    const beforeLayer = map.getLayer(DESTINATION_CIRCLE_LAYER_ID) 
+        ? DESTINATION_CIRCLE_LAYER_ID 
+        : undefined;
+    
+    map.addLayer({
+        id: COUNTRIES_LAYER_ID,
+        type: 'fill',
+        source: COUNTRIES_SOURCE_ID,
+        paint: {
+            'fill-color': [
+                'case',
+                ['boolean', ['feature-state', 'isDestination'], false],
+                '#f0f0f0',  // Light gray for destination countries
+                '#ffcccc'   // Light red for non-destination countries
+            ],
+            'fill-opacity': [
+                'case',
+                ['boolean', ['feature-state', 'hover'], false],
+                0.8,  // Higher opacity on hover
+                ['boolean', ['feature-state', 'isDestination'], false],
+                0.3,  // Medium opacity for destinations
+                0.1   // Low opacity for non-destinations
+            ],
+            'fill-antialias': true
+        }
+    }, beforeLayer);
+    
+    // Add outline layer
+    map.addLayer({
+        id: COUNTRIES_OUTLINE_LAYER_ID,
+        type: 'line',
+        source: COUNTRIES_SOURCE_ID,
+        paint: {
+            'line-color': [
+                'case',
+                ['boolean', ['feature-state', 'hover'], false],
+                '#ff0000',  // Red border on hover
+                '#cccccc'   // Light gray border normally
+            ],
+            'line-width': [
+                'case',
+                ['boolean', ['feature-state', 'hover'], false],
+                2,  // Thicker on hover
+                0.5
+            ]
+        }
+    }, beforeLayer);
+    
+    // Initially hide country layers
+    map.setLayoutProperty(COUNTRIES_LAYER_ID, 'visibility', 'none');
+    map.setLayoutProperty(COUNTRIES_OUTLINE_LAYER_ID, 'visibility', 'none');
+    
+    // Mark destination countries
+    markDestinationCountries();
+    
+    setupCountryInteractions();
+}
+
+function markDestinationCountries() {
+    if (!map) return;
+    
+    // Mark all countries that have removal data
+    // We need to match Natural Earth country names with our destination names
+    const features = worldCountriesData?.features || [];
+    let markedCount = 0;
+    
+    features.forEach(feature => {
+        const neCountryName = feature.properties.name;
+        const destData = getDestinationDataForCountry(neCountryName);
+        
+        if (destData) {
+            map.setFeatureState(
+                { source: COUNTRIES_SOURCE_ID, id: neCountryName },
+                { isDestination: true }
+            );
+            markedCount++;
+        }
+    });
+    
+    console.log(`Marked ${markedCount} countries as destinations`);
+}
+
+function setupCountryInteractions() {
+    if (!map) {
+        console.error('Cannot setup country interactions: map not initialized');
+        return;
+    }
+    
+    console.log('Setting up country interactions for layer:', COUNTRIES_LAYER_ID);
+    
+    // Create tooltip div if it doesn't exist
+    if (!countryTooltip) {
+        countryTooltip = document.createElement('div');
+        countryTooltip.className = 'country-tooltip';
+        countryTooltip.style.position = 'absolute';
+        countryTooltip.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
+        countryTooltip.style.color = '#fff';
+        countryTooltip.style.padding = '10px 15px';
+        countryTooltip.style.borderRadius = '6px';
+        countryTooltip.style.fontSize = '14px';
+        countryTooltip.style.pointerEvents = 'none';
+        countryTooltip.style.opacity = '0';
+        countryTooltip.style.zIndex = '1000';
+        countryTooltip.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)';
+        countryTooltip.style.transition = 'opacity 0.2s';
+        document.getElementById('map').appendChild(countryTooltip);
+    }
+    
+    // Mouse move handler
+    map.on('mousemove', COUNTRIES_LAYER_ID, (e) => {
+        if (!countriesActive) {
+            console.log('Country hover blocked: countriesActive =', countriesActive);
+            return;
+        }
+        if (e.features.length === 0) return;
+        
+        map.getCanvas().style.cursor = 'pointer';
+        const feature = e.features[0];
+        const countryName = feature.properties.name;
+        
+        // Update hover state
+        if (hoveredCountryName !== null && hoveredCountryName !== countryName) {
+            map.setFeatureState(
+                { source: COUNTRIES_SOURCE_ID, id: hoveredCountryName },
+                { hover: false }
+            );
+        }
+        
+        hoveredCountryName = countryName;
+        map.setFeatureState(
+            { source: COUNTRIES_SOURCE_ID, id: countryName },
+            { hover: true }
+        );
+        
+        // Get destination data for this country
+        const destData = getDestinationDataForCountry(countryName);
+        
+        if (destData) {
+            // Show tooltip with data
+            let tooltipHTML = `<strong>${destData.destination}</strong><br/>`;
+            tooltipHTML += `Total: ${destData.total.toLocaleString()} removals<br/>`;
+            if (destData.top_origins && destData.top_origins.length > 0) {
+                tooltipHTML += `<br/><strong>Top Origin States:</strong><br/>`;
+                destData.top_origins.forEach((origin, i) => {
+                    tooltipHTML += `${i + 1}. ${origin.name}: ${origin.count.toLocaleString()} (${origin.percent}%)<br/>`;
+                });
+            }
+            
+            countryTooltip.innerHTML = tooltipHTML;
+            countryTooltip.style.left = `${e.point.x + 15}px`;
+            countryTooltip.style.top = `${e.point.y + 15}px`;
+            countryTooltip.style.opacity = '1';
+            
+            // Filter particles to only show flows to this country
+            filterParticlesByDestination(destData.destination);
+        } else {
+            // Debug: log available countries
+            console.log(`No data found for country: "${countryName}"`);
+            console.log('Available destinations:', Object.keys(countryRemovalData).slice(0, 10));
+            
+            // No data for this country
+            countryTooltip.innerHTML = `<strong>${countryName}</strong><br/>No removal data`;
+            countryTooltip.style.left = `${e.point.x + 15}px`;
+            countryTooltip.style.top = `${e.point.y + 15}px`;
+            countryTooltip.style.opacity = '1';
+            
+            // Fade all particles
+            filterParticlesByDestination(null);
+        }
+    });
+    
+    // Mouse leave handler
+    map.on('mouseleave', COUNTRIES_LAYER_ID, () => {
+        map.getCanvas().style.cursor = '';
+        
+        if (hoveredCountryName !== null) {
+            map.setFeatureState(
+                { source: COUNTRIES_SOURCE_ID, id: hoveredCountryName },
+                { hover: false }
+            );
+            hoveredCountryName = null;
+        }
+        
+        if (countryTooltip) {
+            countryTooltip.style.opacity = '0';
+        }
+        
+        // Only restore particles if no country is selected (clicked)
+        // If a country was clicked, maintain the filter
+        if (selectedCountryName === null || selectedCountryName === undefined) {
+            filterParticlesByDestination(undefined);
+        } else {
+            // Maintain the selected country filter
+            filterParticlesByDestination(selectedCountryName);
+        }
+    });
+    
+    // Click handler for countries
+    map.on('click', COUNTRIES_LAYER_ID, (e) => {
+        if (!countriesActive || e.features.length === 0) return;
+        
+        const feature = e.features[0];
+        const countryName = feature.properties.name;
+        const destData = getDestinationDataForCountry(countryName);
+        
+        if (destData) {
+            // Filter particles to show only flows to this country (persist on click)
+            filterParticlesByDestination(destData.destination);
+            
+            // Zoom to the country
+            const bbox = turf.bbox(feature.geometry);
+            map.fitBounds(bbox, {
+                padding: 100,
+                maxZoom: 5,
+                duration: 1000
+            });
+            
+            // Keep the tooltip visible with the country data
+            console.log(`Clicked on ${countryName}: ${destData.total.toLocaleString()} removals`);
+        } else {
+            // No data for this country - gray out all particles
+            filterParticlesByDestination(null);
+        }
+    });
+    
+    console.log('Country interactions setup complete');
+}
+
+function filterParticlesByDestination(destinationName) {
+    if (!canvas || !ctx || particles.length === 0) return;
+    
+    // Store selected country for click persistence
+    selectedCountryName = destinationName;
+    
+    // Store filter state on each particle
+    particles.forEach(p => {
+        if (destinationName === undefined) {
+            // Restore all particles (undefined means no filter)
+            p.filtered = false;
+            p.opacity = 1.0;
+            p.color = 'red'; // All particles red when no filter
+        } else if (destinationName === null) {
+            // Fade all particles (null means no match)
+            p.filtered = true;
+            p.opacity = 0.2;
+            p.color = 'gray'; // All particles gray when no data
+        } else {
+            // Filter based on destination
+            p.filtered = p.destinationName !== destinationName;
+            p.opacity = p.filtered ? 0.5 : 1.0; // Keep some visibility for gray particles
+            p.color = p.filtered ? 'gray' : 'red'; // Gray for non-matching, red for matching
+        }
+    });
+}
+
+function setCountryLayersVisible(visible) {
+    countriesActive = visible;
+    if (!map || !map.getLayer(COUNTRIES_LAYER_ID)) {
+        console.warn('Country layers not yet loaded');
+        return;
+    }
+    const visibility = visible ? 'visible' : 'none';
+    map.setLayoutProperty(COUNTRIES_LAYER_ID, 'visibility', visibility);
+    map.setLayoutProperty(COUNTRIES_OUTLINE_LAYER_ID, 'visibility', visibility);
+    console.log(`Country layers visibility set to: ${visibility}, countriesActive: ${countriesActive}`);
+}
+
 function initMap() {
     map = new maplibregl.Map({
         container: 'map',
@@ -400,11 +930,27 @@ function initMap() {
 
         // Load flows
         const flows = await loadData();
+        allFlows = flows; // Store for country aggregation
         particles = createParticles(flows);
+
+        // Aggregate flows by destination country
+        countryRemovalData = aggregateFlowsByDestination(flows);
+        console.log(`Aggregated removal data for ${Object.keys(countryRemovalData).length} destination countries`);
+        console.log('Sample destinations:', Object.keys(countryRemovalData).slice(0, 10));
 
         const destinationGeoJSON = buildDestinationGeoJSON(flows);
         addDestinationOverlay(destinationGeoJSON);
         setDestinationOverlayVisible(false);
+        
+        // Load and add world countries
+        worldCountriesData = await loadWorldCountries();
+        if (worldCountriesData) {
+            addCountryLayers(worldCountriesData);
+            console.log('Country layers added. Layer exists:', map.getLayer(COUNTRIES_LAYER_ID) !== undefined);
+        } else {
+            console.error('Failed to load world countries data');
+        }
+        
         disableMapInteractions();
 
         // Debug: Log summary statistics
@@ -440,18 +986,58 @@ function handleStepEnter(response) {
             }
             flyToDefault();
             setDestinationOverlayVisible(false);
+            setCountryLayersVisible(false);
             disableMapInteractions();
             break;
         case 1:
         case 2:
         case 3:
             focusOnDestination(response.index - 1);
+            setCountryLayersVisible(true);
             break;
         case 4:
-            flyToDefault();
-            setDestinationOverlayVisible(true);
+            console.log('Step 4: Interactive exploration');
+            flyToWorld(); // Show whole world for exploration
+            setDestinationOverlayVisible(false); // Hide circles, use countries instead
+            
+            // Reset particle filter - all particles should be red initially
+            selectedCountryName = null;
+            filterParticlesByDestination(undefined);
+            
+            // Ensure country layers are visible
+            setTimeout(() => {
+                setCountryLayersVisible(true);
+                console.log('Country layers should now be visible');
+                console.log('countriesActive:', countriesActive);
+                console.log('Layer exists:', map && map.getLayer(COUNTRIES_LAYER_ID));
+            }, 100);
+            
             enableMapInteractions();
             break;
+    }
+}
+
+function handleStepExit(response) {
+    // Check if we're exiting the last step (interactive-step, index 4)
+    if (response.index === 4 && response.direction === 'down') {
+        console.log('Exiting last step - triggering exit animation');
+        
+        // Add exit class to article for CSS transitions
+        const article = document.querySelector('#scrolly article');
+        if (article) {
+            article.classList.add('exiting');
+        }
+        
+        // Recenter and reset zoom to default
+        setTimeout(() => {
+            flyToDefault();
+            // Fade out cards
+            document.querySelectorAll('#scrolly article .step').forEach(step => {
+                step.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+                step.style.opacity = '0';
+                step.style.transform = 'translateY(-20px)';
+            });
+        }, 100);
     }
 }
 
@@ -467,7 +1053,8 @@ async function init() {
             offset: 0.5,
             debug: false
         })
-        .onStepEnter(handleStepEnter);
+        .onStepEnter(handleStepEnter)
+        .onStepExit(handleStepExit);
 
     window.addEventListener('resize', () => {
         scroller.resize();

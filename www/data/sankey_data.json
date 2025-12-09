@@ -3,17 +3,27 @@
     {
       "source": "Arrest",
       "target": "Detention",
-      "value": 194773
+      "value": 97792
     },
     {
       "source": "Arrest",
-      "target": "Removal",
-      "value": 80421
+      "target": "No Detention",
+      "value": 176224
+    },
+    {
+      "source": "No ICE Arrest",
+      "target": "Detention",
+      "value": 227742
     },
     {
       "source": "Detention",
       "target": "Removal",
-      "value": 349285
+      "value": 190136
+    },
+    {
+      "source": "Detention",
+      "target": "No Removal",
+      "value": 135398
     }
   ]
 }

@@ -439,6 +439,30 @@ function initTimelineScrollama() {
                 }
             }
         });
+    
+    // Setup intersection observer to hide filter when timeline section is not visible
+    setupTimelineFilterVisibility();
+}
+
+// Hide filter when timeline section is not visible
+function setupTimelineFilterVisibility() {
+    const timelineSection = document.getElementById('timeline-section');
+    const filter = document.getElementById('timeline-filter');
+    
+    if (!timelineSection || !filter) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                // Timeline section is not visible, hide filter
+                filter.classList.remove('visible');
+            }
+        });
+    }, {
+        threshold: 0.1 // Trigger when less than 10% of section is visible
+    });
+    
+    observer.observe(timelineSection);
 }
 
 // Initialize when DOM is ready

@@ -1,64 +1,242 @@
+html {
+    margin: 0;
+    padding: 0;
+    /* overflow-x: hidden; -- REMOVED: This breaks position: sticky */
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    /* overflow-x: hidden; -- REMOVED: This breaks position: sticky */
 }
 
+/* Compact black header */
 header {
-    background-color: #fff;
-    padding: 4rem 2rem;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
+    background-color: #000;
+    padding: 1rem 2rem;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 200; /* Very high z-index to ensure it stays on top */
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
 }
 
 .header-content {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
+header h1 {
+    font-size: 1.0rem;
+    margin: 0;
+    color: #fff;
+    font-weight: 400;
+}
+
+/* Full-screen hero section with background image */
+#hero-section {
+    position: relative;
+    width: 100vw;
+    height: 95vh; /* Increased height from top to almost middle */
+    background-image: url('imgs/GeminiMigrBase.JPG');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent horizontal scroll in hero section */
+}
+
+.hero-content {
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    padding: 3rem; /* Increased padding to make the box bigger */
+    margin-top: 0vh;
+    background-color: rgba(0, 0, 0, 0.3); /* More transparent overlay for readability */
+}
+
+.hero-title {
+    font-size: 5rem; /* Increased from 3.5rem */
+    margin-bottom: 1.5rem; /* Increased spacing */
+    line-height: 1.2;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    margin-top: 0;
+}
+
+.hero-subtitle {
+    font-size: 2rem; /* Increased from 1.5rem */
+    font-style: italic;
+    margin: 0;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* General h1 styling (for other sections) */
 h1 {
     font-size: 3rem;
     margin-bottom: 0.5rem;
 }
 
-.intro {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #444;
-    margin: 2rem auto;
-    padding: 0 2rem;
-    max-width: 800px;
-    text-align: left;
+/* Migration Section */
+#migration-section {
+    background-color: #ffffff;
+    padding: 0; /* Full width, no padding */
+    min-height: 500vh; /* Increased to ensure last card renders */
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid #ddd;
 }
 
-.subtitle {
+.migration-container {
+    color: #ffffff;
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+    margin-top: 0;
+}
+
+#migration-viz {
+    position: sticky;
+    top: 60px;
+    height: calc(100vh - 60px);
+    width: 100%;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+    margin-top: 0;
+}
+
+#migration-section article {
+    position: relative;
+    margin: 0;
+    margin-left: auto;
+    margin-right: 2rem;
+    max-width: 30rem;
+    z-index: 10;
+    margin-top: calc(-100vh + 60px);
+    padding-top: 50vh;
+    padding-bottom: 120vh; /* Add space so last card can scroll up while SVG stays */
+    pointer-events: none;
+}
+
+#migration-section .step {
+    margin: 0 auto 80vh auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    pointer-events: auto;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+    text-align: center;
+}
+
+#migration-section .step:last-child {
+    margin-bottom: 0;
+}
+
+#migration-section .step.is-active {
+    opacity: 1;
+    border-left: 3px solid #333;
+}
+
+#migration-section .step h3 {
     font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+#migration-section .step p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Migration era text colors */
+.era-1850 { color: #edbe62; }
+.era-1960 { color: #1f9aa8; }
+.era-2010 { color: #1d55a4; }
+.era-2024 { color: #c81d25; }
+
+/* Migration context section */
+.migration-context {
+    position: relative;
+    margin: 0 auto;
+    max-width: 900px;
+    padding: 3rem 2rem;
+    text-align: left;
+    background-color: #fff;
+    border-bottom: none;
+}
+
+.migration-context h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    margin-top: 2rem;
+    color: #333;
+    text-align: center;
+}
+
+.migration-context h3:first-child {
+    margin-top: 0;
+}
+
+.migration-context p {
+    font-size: 1rem;
+    line-height: 1.6;
     color: #666;
-    font-style: italic;
-    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Person icon styling */
+.person-icon {
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.person-icon path {
+    transition: fill 0.8s ease;
 }
 
 #scrolly {
     position: relative;
     display: block;
     /* Reset flex */
-    background-color: #f3f3f3;
+    background-color: #ffffff;
+    /* overflow: hidden removed - it breaks sticky positioning for #map */
+    padding-bottom: 3vh; /* Allow cards to scroll up and exit */
 }
 
 #map {
     position: sticky;
-    top: 0;
-    height: 100vh;
+    top: 60px; /* Position below the black header */
+    height: calc(98vh - 60px);
     width: 100%;
     z-index: 0;
+    overflow: hidden; /* Prevent map content from scrolling horizontally */
 }
 
 article {
     position: relative;
-    margin: 0 auto;
+    margin: 0;
+    margin-left: auto;
+    margin-right: 2rem;
     max-width: 30rem;
     z-index: 10;
-    margin-top: -100vh;
+    margin-top: calc(-100vh + 60px); /* Adjusted for header height */
     /* Pull content up to overlay map */
     padding-top: 50vh;
     /* Start content lower down */
@@ -124,21 +302,25 @@ article {
     background-color: #fff;
     padding: 1.5rem 2rem 3rem 2rem; /* Reduced top padding */
     border-bottom: 1px solid #ddd;
+    overflow: visible; /* Ensure sticky positioning works */
 }
 
 .timeline-container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 2rem;
+    overflow: visible; /* Ensure sticky positioning works */
 }
 
 .timeline-header {
     position: sticky;
-    top: 0;
-    z-index: 5;
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 0.5rem 0 0.25rem 0;
-    backdrop-filter: blur(4px);
+    top: 60px; /* Position below the black header (header padding 1rem + content ~60px) */
+    z-index: 150; /* High z-index but below header (200) */
+    background-color: rgba(255, 255, 255, 0.98);
+    padding: 1rem 0 0.75rem 0;
+    backdrop-filter: blur(8px);
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .timeline-container h2 {
@@ -155,19 +337,18 @@ article {
     font-size: 1rem;
 }
 
-/* Country filter - positioned to the right of the timeline */
+/* Country filter - positioned at top left of the timeline */
 #timeline-filter {
-    position: sticky;
-    top: 140px;
-    background-color: rgba(255, 255, 255, 0.95);
+    position: fixed;
+    top: 160px; /* Match the sticky top position of timeline-viz */
+    left: calc((100vw - min(1100px, 100vw)) / 2 + 2rem);
+    background-color: rgba(255, 255, 255, 0.514);
     padding: 1rem 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     min-width: 250px;
     width: 280px;
-    margin-left: auto;
-    margin-right: 2rem;
-    margin-top: -80vh; /* Slide it up beside the chart */
+    z-index: 100;
     transition: opacity 0.3s ease;
     opacity: 0;
     pointer-events: none;
@@ -189,6 +370,7 @@ article {
     width: 100%;
     padding: 0.5rem 1rem;
     font-size: 1rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #fff;
@@ -201,15 +383,15 @@ article {
 
 /* Timeline scrolly section */
 #timeline-scrolly {
-    position: relative;
+    position: relative; /* For absolute positioning of filter */
     background-color: #fff;
     min-height: 200vh; /* Enough height for cards + spacer */
 }
 
 #timeline-viz {
-    position: sticky;
-    top: 0;
-    height: 100vh;
+    position: sticky; /* Sticky positioning works for absolute children too */
+    top: 140px; /* Position below header (60px) + timeline-header (~80px) */
+    height: calc(100vh - 140px);
     width: 100%;
     z-index: 0;
     display: flex;
@@ -228,10 +410,12 @@ article {
 
 #timeline-section article {
     position: relative;
-    margin: 0 auto;
+    margin: 0;
+    margin-left: auto;
+    margin-right: 2rem;
     max-width: 30rem;
     z-index: 10;
-    margin-top: -100vh;
+    margin-top: calc(-100vh + 140px); /* Adjusted for header + timeline-header */
     padding-top: 50vh;
     pointer-events: none;
 }
@@ -360,9 +544,9 @@ article {
 }
 
 .sankey-container {
-    max-width: 1100px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
 }
 
 .sankey-container h2 {
@@ -373,10 +557,14 @@ article {
 }
 
 .sankey-description {
-    text-align: center;
+    text-align: justify;
     color: #666;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     font-size: 1rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
 }
 
 #sankey-container {
@@ -397,4 +585,400 @@ article {
     border: none;
     background-color: #ffffff;
     overflow: visible;
+}
+
+/* Detention Journey Section */
+#detention-section {
+    position: relative;
+    background-color: #f3f3f3;
+    padding: 0;
+    padding-bottom: 50vh; /* Allow cards to scroll up and exit */
+    min-height: 400vh;
+}
+
+.detention-intro {
+    background-color: #fff;
+    padding: 2rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.detention-intro h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.detention-description {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+#detention-scrolly {
+    position: relative;
+    display: block;
+}
+
+#detention-map {
+    position: sticky;
+    top: 60px;
+    height: calc(100vh - 60px);
+    width: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+#detention-section article {
+    position: relative;
+    margin: 0;
+    margin-left: auto;
+    margin-right: 2rem;
+    max-width: 32rem;
+    z-index: 10;
+    margin-top: calc(-100vh + 60px);
+    padding-top: 50vh;
+    padding-bottom: 50vh;
+    pointer-events: none;
+}
+
+#detention-section .step {
+    margin: 0 auto 80vh auto;
+    background-color: rgba(251, 249, 249, 0.376);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(228, 228, 228, 0.15);
+    pointer-events: auto;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+}
+
+#detention-section .step:last-child {
+    margin-bottom: 0;
+}
+
+#detention-section .step.is-active {
+    opacity: 1;
+    border-left: 3px solid #333;
+}
+
+#detention-section .step h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+#detention-section .step p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 0.8rem;
+}
+
+.person-demographics,
+.person-journey {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+    text-align: left;
+}
+
+.person-demographics p,
+.person-journey p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.person-demographics strong,
+.person-journey strong {
+    color: #333;
+}
+
+.highlight-note {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 1rem;
+}
+
+.particle-note {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.8rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    border-left: 3px solid #888;
+}
+
+.particle-note strong {
+    color: #333;
+}
+
+/* Location statistics styling */
+.location-stats {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+    text-align: left;
+}
+
+.location-stats p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.location-stats .stat-detail {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.destination-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.5rem 0;
+}
+
+.destination-list li {
+    padding: 0.3rem 0;
+    font-size: 0.9rem;
+    color: #555;
+    border-bottom: 1px solid #ffffff;
+}
+
+.destination-list li:last-child {
+    border-bottom: none;
+}
+
+/* Detention counter styling */
+.detention-counter {
+    background-color: rgba(20, 20, 20, 0.95);
+    color: #ffffff;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-align: center;
+    margin: 1rem 0;
+    font-family: 'Courier New', monospace;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Specific colors for each person's counter */
+.detention-counter-1 {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #ff6b6b; /* Light red for person 1 */
+    border-color: rgba(255, 107, 107, 0.4);
+}
+
+.detention-counter-2 {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #6b9fff; /* Light blue for person 2 */
+    border-color: rgba(107, 159, 255, 0.4);
+}
+
+/* Facility tooltip styling */
+.facility-tooltip {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    pointer-events: none;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    max-width: 250px;
+}
+
+.facility-tooltip strong {
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* Interaction instructions */
+.interaction-instructions {
+    background-color: rgba(74, 144, 226, 0.1);
+    border-left: 3px solid #4A90E2;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+.interaction-instructions strong {
+    color: #4A90E2;
+}
+
+/* Particle canvas styling */
+#detention-particle-canvas {
+    pointer-events: none;
+}
+
+/* Exit animation styles */
+article.exiting {
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+article.exiting .step {
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Data Sources Overlay */
+#data-sources-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+#data-sources-overlay.active {
+    display: flex;
+}
+
+.overlay-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.data-sources-card {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.98);
+    max-width: 700px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    z-index: 2001;
+    margin: auto;
+}
+
+.data-sources-card h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+}
+
+.data-sources-card h3 {
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: #444;
+}
+
+.data-sources-card ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1.5rem;
+}
+
+.data-sources-card li {
+    padding: 0.6rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.6;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.data-sources-card li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #888;
+    font-weight: bold;
+}
+
+.data-sources-card li strong {
+    color: #333;
+}
+
+.data-sources-card a {
+    color: #4a90e2;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(74, 144, 226, 0.3);
+    transition: border-color 0.2s;
+}
+
+.data-sources-card a:hover {
+    border-bottom-color: #4a90e2;
+    color: #357abd;
+}
+
+.data-source-section,
+.methodology-section,
+.notes-section {
+    margin-bottom: 1.5rem;
+}
+
+.close-overlay-btn {
+    display: block;
+    margin: 2rem auto 0 auto;
+    padding: 0.8rem 2rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.close-overlay-btn:hover {
+    background-color: #555;
+}
+
+.close-overlay-btn:active {
+    background-color: #222;
+}
+
+/* Data Sources Button */
+.data-sources-btn {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background-color: rgba(74, 144, 226, 0.9);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-top: 0.5rem;
+}
+
+.data-sources-btn:hover {
+    background-color: rgba(74, 144, 226, 1);
+    transform: translateY(-1px);
+}
+
+.data-sources-btn:active {
+    transform: translateY(0);
+    background-color: rgba(60, 120, 200, 1);
 }

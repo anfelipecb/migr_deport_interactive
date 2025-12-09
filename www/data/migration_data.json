@@ -1,0 +1,37 @@
+[
+  {
+    "year": 1850,
+    "population": 2244600,
+    "percentage": 0.096783977,
+    "iconCount": 12,
+    "color": "#edbe62"
+  },
+  {
+    "year": 1960,
+    "population": 9738100,
+    "percentage": 0.054303943,
+    "iconCount": 49,
+    "color": "#087e8b"
+  },
+  {
+    "year": 2010,
+    "population": 39955900,
+    "percentage": 0.129160802,
+    "iconCount": 200,
+    "color": "#1d55a4"
+  },
+  {
+    "year": 2023,
+    "population": 47831400,
+    "percentage": 0.142816613,
+    "iconCount": 240,
+    "color": "#c81d25"
+  },
+  {
+    "year": 2024,
+    "population": 50234900,
+    "percentage": 0.148,
+    "iconCount": 252,
+    "color": "#c81d25"
+  }
+]

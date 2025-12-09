@@ -1,0 +1,379 @@
+{
+  "overall_stats": {
+    "avg_transfer_distance_km": 793.5,
+    "avg_transfer_distance_miles": 493.0,
+    "total_transfers": 331622,
+    "unique_routes": 11904
+  },
+  "featured_locations": [
+    {
+      "name": "Chicago Area",
+      "type": "region",
+      "facilities": [
+        {
+          "code": "BSAHOLD",
+          "name": "Broadview Service Staging",
+          "lat": 41.86852212,
+          "lon": -87.86562002,
+          "city": "Broadview",
+          "state": "IL",
+          "distance_to_chicago": 19.554502479116238
+        },
+        {
+          "code": "CCHHSIL",
+          "name": "Cook County Hospital-JHS",
+          "lat": 41.8729343,
+          "lon": -87.67380235,
+          "city": "Chicago",
+          "state": "IL",
+          "distance_to_chicago": 3.688194839765204
+        },
+        {
+          "code": "CHIHOLD",
+          "name": "Chicago Hold Room",
+          "lat": 41.974839,
+          "lon": -87.890021,
+          "city": "Chicago",
+          "state": "IL",
+          "distance_to_chicago": 24.065763686193566
+        }
+      ],
+      "total_transfers": 4673,
+      "outflows": 1947,
+      "inflows": 2726,
+      "top_destinations": [
+        {
+          "code": "CLAYCIN",
+          "name": "Clay County Justice Center",
+          "lat": 39.52383377,
+          "lon": -87.12009947,
+          "count": 380,
+          "distance_km": 277.66105965618374,
+          "distance_miles": 172.53053029962254
+        },
+        {
+          "code": "DODGEWI",
+          "name": "Dodge County Jail, Juneau",
+          "lat": 43.407113,
+          "lon": -88.706195,
+          "count": 344,
+          "distance_km": 174.22722124070765,
+          "distance_miles": 108.25974268955976
+        },
+        {
+          "code": "BSAHOLD",
+          "name": "Broadview Service Staging",
+          "lat": 41.86852212,
+          "lon": -87.86562002,
+          "count": 303,
+          "distance_km": 11.649341557623371,
+          "distance_miles": 7.238563013001992
+        },
+        {
+          "code": "JENATLA",
+          "name": "Alexandria Staging Facility",
+          "lat": 31.31723,
+          "lon": -92.5364,
+          "count": 202,
+          "distance_km": 1248.440725670343,
+          "distance_miles": 775.7448621505067
+        },
+        {
+          "code": "BOONEKY",
+          "name": "Boone County Jail",
+          "lat": 39.03732571,
+          "lon": -84.72366686,
+          "count": 198,
+          "distance_km": 423.49810479139626,
+          "distance_miles": 263.1494408723347
+        }
+      ],
+      "top_origins": [
+        {
+          "code": "CLAYCIN",
+          "name": "Clay County Justice Center",
+          "lat": 39.52383377,
+          "lon": -87.12009947,
+          "count": 647,
+          "distance_km": 277.66105965618374,
+          "distance_miles": 172.53053029962254
+        },
+        {
+          "code": "DODGEWI",
+          "name": "Dodge County Jail, Juneau",
+          "lat": 43.407113,
+          "lon": -88.706195,
+          "count": 587,
+          "distance_km": 174.22722124070765,
+          "distance_miles": 108.25974268955976
+        },
+        {
+          "code": "BOONEKY",
+          "name": "Boone County Jail",
+          "lat": 39.03732571,
+          "lon": -84.72366686,
+          "count": 313,
+          "distance_km": 423.49810479139626,
+          "distance_miles": 263.1494408723347
+        },
+        {
+          "code": "BSAHOLD",
+          "name": "Broadview Service Staging",
+          "lat": 41.86852212,
+          "lon": -87.86562002,
+          "count": 303,
+          "distance_km": 11.649341557623371,
+          "distance_miles": 7.238563013001992
+        },
+        {
+          "code": "INPHOLD",
+          "name": "Indianapolis Hold Room",
+          "lat": 39.765936,
+          "lon": -86.1535844,
+          "count": 234,
+          "distance_km": 285.7180518924981,
+          "distance_miles": 177.53691162249345
+        }
+      ],
+      "camera": {
+        "center": [
+          -87.6298,
+          41.8781
+        ],
+        "zoom": 7,
+        "pitch": 0,
+        "bearing": 0
+      }
+    },
+    {
+      "name": "Alexandria Staging Facility",
+      "type": "facility",
+      "code": "JENATLA",
+      "lat": 31.31723,
+      "lon": -92.5364,
+      "city": "Alexandria",
+      "state": "LA",
+      "total_transfers": 53483,
+      "outflows": 25776,
+      "inflows": 27707,
+      "top_destinations": [
+        {
+          "code": "PINEPLA",
+          "name": "Pine Prairie ICE Processing Center",
+          "lat": 30.788073,
+          "lon": -92.413408,
+          "count": 2060,
+          "distance_km": 59.99469243163783,
+          "distance_miles": 37.27896203093923
+        },
+        {
+          "code": "STWRTGA",
+          "name": "Stewart Detention Center",
+          "lat": 32.036676,
+          "lon": -84.771746,
+          "count": 904,
+          "distance_km": 738.9419027617557,
+          "distance_miles": 459.15706906097495
+        },
+        {
+          "code": "JENADLA",
+          "name": "Lasalle ICE Processing Center",
+          "lat": 31.70727408,
+          "lon": -92.15105963,
+          "count": 896,
+          "distance_km": 56.70446109049149,
+          "distance_miles": 35.23450769225979
+        },
+        {
+          "code": "LAWINCI",
+          "name": "Winn Corr Institute",
+          "lat": 31.84956533,
+          "lon": -92.80151367,
+          "count": 896,
+          "distance_km": 64.29970280281432,
+          "distance_miles": 39.953970630287536
+        },
+        {
+          "code": "EAZ",
+          "name": "Eloy Federal Contract Fac",
+          "lat": 32.8176772,
+          "lon": -111.5192701,
+          "count": 886,
+          "distance_km": 1794.0804369943407,
+          "distance_miles": 1114.7895552156106
+        }
+      ],
+      "top_origins": [
+        {
+          "code": "PINEPLA",
+          "name": "Pine Prairie ICE Processing Center",
+          "lat": 30.788073,
+          "lon": -92.413408,
+          "count": 2020,
+          "distance_km": 59.99469243163783,
+          "distance_miles": 37.27896203093923
+        },
+        {
+          "code": "STWRTGA",
+          "name": "Stewart Detention Center",
+          "lat": 32.036676,
+          "lon": -84.771746,
+          "count": 1000,
+          "distance_km": 738.9419027617557,
+          "distance_miles": 459.15706906097495
+        },
+        {
+          "code": "LAWINCI",
+          "name": "Winn Corr Institute",
+          "lat": 31.84956533,
+          "lon": -92.80151367,
+          "count": 983,
+          "distance_km": 64.29970280281432,
+          "distance_miles": 39.953970630287536
+        },
+        {
+          "code": "MSVPCPA",
+          "name": "Moshannon Valley Processing Center",
+          "lat": 40.9200419,
+          "lon": -78.240515,
+          "count": 919,
+          "distance_km": 1666.1471410227625,
+          "distance_miles": 1035.295515164455
+        },
+        {
+          "code": "IWAHOLD",
+          "name": "AZ Rem Op Coord Center (AROCC)",
+          "lat": 33.4180114,
+          "lon": -111.8367566,
+          "count": 913,
+          "distance_km": 1824.9752414531729,
+          "distance_miles": 1133.9866907569995
+        }
+      ],
+      "camera": {
+        "center": [
+          -92.5364,
+          31.31723
+        ],
+        "zoom": 6,
+        "pitch": 0,
+        "bearing": 0
+      }
+    },
+    {
+      "name": "Florence Staging Facility",
+      "type": "facility",
+      "code": "FSF",
+      "lat": 33.0649605,
+      "lon": -111.3785048,
+      "city": "Florence",
+      "state": "AZ",
+      "total_transfers": 29328,
+      "outflows": 14396,
+      "inflows": 14932,
+      "top_destinations": [
+        {
+          "code": "FLO",
+          "name": "Florence SPC",
+          "lat": 33.0649605,
+          "lon": -111.3785048,
+          "count": 4760,
+          "distance_km": 0.0,
+          "distance_miles": 0.0
+        },
+        {
+          "code": "PHOHOLD",
+          "name": "Phoenix Dist Office",
+          "lat": 33.4707851,
+          "lon": -112.0730899,
+          "count": 1276,
+          "distance_km": 78.78090075045468,
+          "distance_miles": 48.95216708021077
+        },
+        {
+          "code": "CCAFLAZ",
+          "name": "CCA, Florence Correctional Center",
+          "lat": 33.0438338,
+          "lon": -111.371793,
+          "count": 1183,
+          "distance_km": 2.431037168635111,
+          "distance_miles": 1.5105759965119676
+        },
+        {
+          "code": "EAZ",
+          "name": "Eloy Federal Contract Fac",
+          "lat": 32.8176772,
+          "lon": -111.5192701,
+          "count": 902,
+          "distance_km": 30.47322517957983,
+          "distance_miles": 18.9351784030607
+        },
+        {
+          "code": "JENATLA",
+          "name": "Alexandria Staging Facility",
+          "lat": 31.31723,
+          "lon": -92.5364,
+          "count": 860,
+          "distance_km": 1781.2698453455896,
+          "distance_miles": 1106.8294250722345
+        }
+      ],
+      "top_origins": [
+        {
+          "code": "FLO",
+          "name": "Florence SPC",
+          "lat": 33.0649605,
+          "lon": -111.3785048,
+          "count": 4818,
+          "distance_km": 0.0,
+          "distance_miles": 0.0
+        },
+        {
+          "code": "PHOHOLD",
+          "name": "Phoenix Dist Office",
+          "lat": 33.4707851,
+          "lon": -112.0730899,
+          "count": 1478,
+          "distance_km": 78.78090075045468,
+          "distance_miles": 48.95216708021077
+        },
+        {
+          "code": "CCAFLAZ",
+          "name": "CCA, Florence Correctional Center",
+          "lat": 33.0438338,
+          "lon": -111.371793,
+          "count": 1413,
+          "distance_km": 2.431037168635111,
+          "distance_miles": 1.5105759965119676
+        },
+        {
+          "code": "FIPCMGA",
+          "name": "Folkston Main IPC",
+          "lat": 30.8763803,
+          "lon": -81.977941,
+          "count": 835,
+          "distance_km": 2774.9568833426624,
+          "distance_miles": 1724.2777335595135
+        },
+        {
+          "code": "JENATLA",
+          "name": "Alexandria Staging Facility",
+          "lat": 31.31723,
+          "lon": -92.5364,
+          "count": 815,
+          "distance_km": 1781.2698453455896,
+          "distance_miles": 1106.8294250722345
+        }
+      ],
+      "camera": {
+        "center": [
+          -111.3785048,
+          33.0649605
+        ],
+        "zoom": 6,
+        "pitch": 0,
+        "bearing": 0
+      }
+    }
+  ]
+}

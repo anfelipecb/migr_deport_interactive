@@ -2,141 +2,141 @@
   "data": [
     {
       "date": "2023-09",
-      "arrests": 10515,
+      "arrests": 10469,
       "detentions": 47868,
-      "removals": 19706
+      "removals": 19673
     },
     {
       "date": "2023-10",
-      "arrests": 10004,
+      "arrests": 9935,
       "detentions": 48693,
-      "removals": 20092
+      "removals": 20038
     },
     {
       "date": "2023-11",
-      "arrests": 8825,
+      "arrests": 8754,
       "detentions": 40895,
-      "removals": 22444
+      "removals": 22388
     },
     {
       "date": "2023-12",
-      "arrests": 9807,
+      "arrests": 9733,
       "detentions": 45393,
-      "removals": 21083
+      "removals": 21029
     },
     {
       "date": "2024-01",
-      "arrests": 8462,
+      "arrests": 8392,
       "detentions": 43548,
-      "removals": 22457
+      "removals": 22404
     },
     {
       "date": "2024-02",
-      "arrests": 9540,
+      "arrests": 9508,
       "detentions": 48183,
-      "removals": 22758
+      "removals": 22735
     },
     {
       "date": "2024-03",
-      "arrests": 9507,
+      "arrests": 9441,
       "detentions": 44936,
-      "removals": 23785
+      "removals": 23740
     },
     {
       "date": "2024-04",
-      "arrests": 10136,
+      "arrests": 10076,
       "detentions": 49514,
-      "removals": 23453
+      "removals": 23414
     },
     {
       "date": "2024-05",
-      "arrests": 10223,
+      "arrests": 10175,
       "detentions": 56176,
-      "removals": 25739
+      "removals": 25702
     },
     {
       "date": "2024-06",
-      "arrests": 8459,
+      "arrests": 8404,
       "detentions": 49584,
-      "removals": 24785
+      "removals": 24746
     },
     {
       "date": "2024-07",
-      "arrests": 9442,
+      "arrests": 9406,
       "detentions": 50769,
-      "removals": 27017
+      "removals": 26994
     },
     {
       "date": "2024-08",
-      "arrests": 9141,
+      "arrests": 9074,
       "detentions": 52153,
-      "removals": 25642
+      "removals": 25592
     },
     {
       "date": "2024-09",
-      "arrests": 8407,
+      "arrests": 8354,
       "detentions": 45656,
-      "removals": 22959
+      "removals": 22924
     },
     {
       "date": "2024-10",
-      "arrests": 9580,
+      "arrests": 9514,
       "detentions": 11670,
-      "removals": 24966
+      "removals": 24919
     },
     {
       "date": "2024-11",
-      "arrests": 8246,
+      "arrests": 8200,
       "detentions": 5855,
-      "removals": 22123
+      "removals": 22090
     },
     {
       "date": "2024-12",
-      "arrests": 8542,
+      "arrests": 8492,
       "detentions": 3741,
-      "removals": 21626
+      "removals": 21593
     },
     {
       "date": "2025-01",
-      "arrests": 12277,
+      "arrests": 12171,
       "detentions": 2425,
-      "removals": 19733
+      "removals": 19686
     },
     {
       "date": "2025-02",
-      "arrests": 17322,
+      "arrests": 17246,
       "detentions": 2904,
-      "removals": 18997
+      "removals": 18957
     },
     {
       "date": "2025-03",
-      "arrests": 18749,
+      "arrests": 18660,
       "detentions": 2410,
-      "removals": 20681
+      "removals": 20638
     },
     {
       "date": "2025-04",
-      "arrests": 17861,
+      "arrests": 17800,
       "detentions": 2197,
-      "removals": 20612
+      "removals": 20589
     },
     {
       "date": "2025-05",
-      "arrests": 22648,
+      "arrests": 22551,
       "detentions": 1567,
-      "removals": 26563
+      "removals": 26517
     },
     {
       "date": "2025-06",
-      "arrests": 30402,
+      "arrests": 29827,
       "detentions": 1375,
-      "removals": 27970
+      "removals": 27830
     },
     {
       "date": "2025-07",
-      "arrests": 23627,
+      "arrests": 23067,
       "detentions": 895,
-      "removals": 23250
+      "removals": 23148
     }
   ],
   "dateRange": {
@@ -144,8 +144,8 @@
     "end": "2025-07"
   },
   "totals": {
-    "arrests": 291722,
+    "arrests": 289249,
     "detentions": 658407,
-    "removals": 528441
+    "removals": 527346
   }
 }

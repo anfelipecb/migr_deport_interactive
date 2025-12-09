@@ -1,6 +1,13 @@
 # In and Out: a Scrolly telling about recent Migrations and Deportations in the U.S.
 
-Andrés Felipe Camacho
+Author: Andrés Felipe Camacho
+
+<div align="center">
+  <video width="100%" autoplay loop muted playsinlin>
+    <source src="migration_deportation.webm" type="video/webm">
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 ## Description
 
@@ -126,7 +133,10 @@ python3 -m http.server 8000
 
 Then open `http://localhost:8000` in your browser.
 
-**Using uvx (if you have it installed):**
+**Using uvx (Recommended):**
 ```bash
 uvx livereload
 ```
+### **Note**
+
+This project was developed with AI assistance for implementation guidance, code optimization in the orchestration pipeline, debugging, and technical explanations of key components including MapLibre GL canvas rendering, Sankey diagram visualization, JavaScript DOM manipulation, and HTML editing. 

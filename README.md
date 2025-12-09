@@ -2,12 +2,7 @@
 
 Author: Andrés Felipe Camacho
 
-<div align="center">
-  <video width="100%" autoplay loop muted playsinlin>
-    <source src="migration_deportation.webm" type="video/webm">
-    Your browser does not support the video tag.
-  </video>
-</div>
+![Migration and Deportation Visualization Demo](migration_deportation.gif)
 
 ## Description
 

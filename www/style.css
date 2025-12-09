@@ -27,6 +27,9 @@ header {
 .header-content {
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header h1 {
@@ -34,6 +37,40 @@ header h1 {
     margin: 0;
     color: #fff;
     font-weight: 400;
+}
+
+.header-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.author-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: opacity 0.2s ease;
+}
+
+.author-link:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.github-link {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    transition: opacity 0.2s ease;
+}
+
+.github-link:hover {
+    opacity: 0.8;
+}
+
+.github-link svg {
+    width: 20px;
+    height: 20px;
 }
 
 /* Full-screen hero section with background image */
@@ -200,6 +237,39 @@ h1 {
     text-align: justify;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Highlight classes for key information */
+.migration-context .highlight-number {
+    font-weight: bold;
+    color: #1d55a4; /* Modern era blue */
+    font-size: 1.05em;
+}
+
+.migration-context .highlight-percent {
+    font-weight: bold;
+    color: #c81d25; /* Today era red */
+    font-size: 1.05em;
+}
+
+.migration-context .highlight-keyword {
+    font-weight: bold;
+    color: #1f9aa8; /* Post-war era teal */
+    font-size: 1.05em;
+}
+
+.migration-context .highlight-historical {
+    font-weight: bold;
+    color: #edbe62; /* Early era gold */
+    font-size: 1.05em;
+}
+
+.migration-context .highlight-contrast {
+    font-weight: bold;
+    color: #c81d25; /* Red for contrast/emphasis */
+    background-color: rgba(200, 29, 37, 0.1);
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
 }
 
 /* Person icon styling */

@@ -2,7 +2,9 @@
 
 Author: Andrés Felipe Camacho
 
-![Migration and Deportation Visualization Demo](migration_deportation.gif)
+See the interacted visualization here: [Migration and Deportation](https://anfelipecb.github.io/migr_deport_interactive/)
+
+[![Migration and Deportation Intro](Banner.png)](https://anfelipecb.github.io/migr_deport_interactive/)
 
 ## Description
 

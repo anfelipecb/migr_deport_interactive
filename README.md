@@ -1,4 +1,4 @@
-# From Roots to Removal: Visualizing Migration and Deportations in the United States
+# From Roots to Removals: Visualizing Migration and Deportations in the United States
 
 Author: Andrés Felipe Camacho
 
@@ -8,7 +8,7 @@ See the interacted visualization here: [Migration and Deportation](https://anfel
 
 ## Description
 
-```From Roots to Removal``` is an interactive data visualization that explores immigration and deportation patterns in the United States. The project presents a comprehensive scrollytelling narrative that traces the journey of individuals through the immigration enforcement system, from historical immigration trends to current deportation flows.
+```From Roots to Removals``` is an interactive data visualization that explores immigration and deportation patterns in the United States. The project presents a comprehensive scrollytelling narrative that traces the journey of individuals through the immigration enforcement system, from historical immigration trends to current deportation flows.
 
 The visualization consists of multiple interconnected sections:
 - **Historical Migration**: An animated timeline showing the growth of the foreign-born population in the United States from 1850 to 2024
